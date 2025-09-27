@@ -1,0 +1,2826 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUEVA - Presupuesto Interactivo | Proyecto Son Parc Menorca</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Paleta CUEVA Official del Brandbook */
+            --cueva-navy: #1B2951;
+            --cueva-electric: #00D4AA;
+            --cueva-coral: #FF6B4A;
+            --cueva-amber: #F59E0B;
+            --cueva-sky: #0EA5E9;
+            
+            /* Grises Refinados */
+            --gray-900: #0F172A;
+            --gray-800: #1E293B;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-500: #64748B;
+            --gray-400: #94A3B8;
+            --gray-300: #CBD5E1;
+            --gray-200: #E2E8F0;
+            --gray-100: #F1F5F9;
+            --gray-50: #F8FAFC;
+            --white: #FFFFFF;
+            
+            /* Sistema Tipográfico Brandbook */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+            
+            /* Variables de diseño */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Splash Screen/Portada */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-logo {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .splash-symbol {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .splash-circle {
+            width: 150px;
+            height: 150px;
+            border: 4px solid var(--white);
+            border-radius: 50%;
+            position: absolute;
+            animation: splashMorph 6s ease-in-out infinite;
+        }
+
+        .splash-element {
+            position: absolute;
+            border: 2px solid var(--cueva-electric);
+            background: transparent;
+            animation: splashFloat 8s ease-in-out infinite;
+        }
+
+        .splash-hex {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+
+        /* Elementos con formas diversas según brandbook */
+        .splash-element:nth-child(2) { top: 25px; left: 25px; width: 15px; height: 15px; animation-delay: -1s; border-color: var(--cueva-electric); }
+        .splash-element:nth-child(3) { top: 25px; left: 110px; width: 15px; height: 15px; animation-delay: -2s; border-color: var(--cueva-coral); }
+        .splash-element:nth-child(4) { top: 50px; left: 50px; width: 18px; height: 18px; animation-delay: -3s; border-color: var(--cueva-sky); }
+        .splash-element:nth-child(5) { top: 75px; left: 75px; width: 21px; height: 10px; animation-delay: -4s; border-color: var(--cueva-amber); }
+        .splash-element:nth-child(6) { top: 100px; left: 25px; width: 10px; height: 10px; animation-delay: -5s; border-color: var(--cueva-electric); }
+        .splash-element:nth-child(7) { top: 100px; left: 110px; width: 15px; height: 15px; animation-delay: -6s; border-color: var(--cueva-coral); }
+
+        @keyframes splashMorph {
+            0%, 100% { 
+                border-radius: 50%; 
+                transform: scale(1);
+                border-color: var(--white);
+            }
+            25% { 
+                border-radius: 30% 70% 40% 60%; 
+                transform: scale(1.1);
+                border-color: var(--cueva-electric);
+            }
+            50% { 
+                border-radius: 60% 40% 70% 30%; 
+                transform: scale(0.95);
+                border-color: var(--cueva-coral);
+            }
+            75% { 
+                border-radius: 40% 60% 30% 70%; 
+                transform: scale(1.05);
+                border-color: var(--cueva-sky);
+            }
+        }
+
+        @keyframes splashFloat {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1); 
+                opacity: 1;
+            }
+            25% { 
+                transform: translate(8px, -12px) scale(1.3); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translate(-12px, 8px) scale(0.7); 
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translate(4px, 4px) scale(1.1); 
+                opacity: 0.9;
+            }
+        }
+
+        .splash-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .splash-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--cueva-electric);
+            margin-bottom: 0.5rem;
+        }
+
+        .splash-tagline {
+            font-size: 1rem;
+            color: var(--gray-300);
+            text-align: center;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .splash-progress {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .splash-progress-bar {
+            height: 100%;
+            background: var(--cueva-electric);
+            border-radius: 2px;
+            animation: loadProgress 3s ease-out forwards;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Logo Animado Brandbook Header */
+        .logo-animated {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--cueva-navy);
+            border-radius: 50%;
+            position: absolute;
+            animation: logoMorph 8s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .logo-animated:hover .logo-circle {
+            animation-duration: 2s;
+        }
+
+        .logo-element {
+            position: absolute;
+            border: 2px solid var(--cueva-electric);
+            background: transparent;
+            animation: logoFloat 10s ease-in-out infinite;
+        }
+
+        .logo-hex {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+        }
+
+        /* Elementos diversos según brandbook: hexágonos, cuadrados (3x3), rectángulos (3x1.5), cuadrados pequeños (1.5x1.5) */
+        .logo-element:nth-child(2) { top: 12px; left: 12px; width: 9px; height: 9px; animation-delay: -1s; border-color: var(--cueva-electric); }
+        .logo-element:nth-child(3) { top: 12px; left: 39px; width: 9px; height: 9px; animation-delay: -2s; border-color: var(--cueva-coral); }
+        .logo-element:nth-child(4) { top: 25px; left: 25px; width: 12px; height: 12px; animation-delay: -3s; border-color: var(--cueva-sky); }
+        .logo-element:nth-child(5) { top: 35px; left: 35px; width: 15px; height: 7px; animation-delay: -4s; border-color: var(--cueva-amber); }
+        .logo-element:nth-child(6) { top: 42px; left: 12px; width: 6px; height: 6px; animation-delay: -5s; border-color: var(--cueva-electric); }
+        .logo-element:nth-child(7) { top: 42px; left: 39px; width: 9px; height: 9px; animation-delay: -6s; border-color: var(--cueva-coral); }
+
+        @keyframes logoMorph {
+            0%, 100% { 
+                border-radius: 50%; 
+                transform: scale(1);
+                border-color: var(--cueva-navy);
+            }
+            16% { 
+                border-radius: 30% 70% 40% 60%; 
+                transform: scale(1.05);
+                border-color: var(--cueva-electric);
+            }
+            33% { 
+                border-radius: 60% 40% 70% 30%; 
+                transform: scale(0.95);
+                border-color: var(--cueva-coral);
+            }
+            50% { 
+                border-radius: 40% 60% 30% 70%; 
+                transform: scale(1.1);
+                border-color: var(--cueva-sky);
+            }
+            66% { 
+                border-radius: 70% 30% 60% 40%; 
+                transform: scale(0.9);
+                border-color: var(--cueva-amber);
+            }
+            83% { 
+                border-radius: 50% 50% 50% 50%; 
+                transform: scale(1.03);
+                border-color: var(--cueva-electric);
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1); 
+                opacity: 1;
+            }
+            20% { 
+                transform: translate(3px, -5px) scale(1.2); 
+                opacity: 0.8;
+            }
+            40% { 
+                transform: translate(-5px, 3px) scale(0.8); 
+                opacity: 0.6;
+            }
+            60% { 
+                transform: translate(2px, 2px) scale(1.1); 
+                opacity: 0.9;
+            }
+            80% { 
+                transform: translate(-2px, -3px) scale(0.9); 
+                opacity: 0.7;
+            }
+        }
+
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--cueva-navy);
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--cueva-electric);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: var(--cueva-sky);
+            transform: translateY(-1px);
+        }
+
+        .date-info {
+            text-align: right;
+        }
+
+        .date-info p:first-child {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .date-info p:last-child {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 0;
+        }
+
+        .nav {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 2px solid transparent;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            color: var(--gray-800);
+        }
+
+        .nav-item.active {
+            color: var(--cueva-electric);
+            border-bottom-color: var(--cueva-electric);
+        }
+
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .project-info {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-item h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .info-item input {
+            width: 80px;
+            padding: 0.6rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .info-item input:focus {
+            outline: none;
+            border-color: var(--cueva-electric);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--cueva-electric);
+        }
+
+        .summary-card-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .summary-text h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-text .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .summary-text .subtitle {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .summary-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .icon-blue { background: #DBEAFE; color: #2563EB; }
+        .icon-teal { background: rgba(0, 212, 170, 0.1); color: var(--cueva-electric); }
+        .icon-green { background: #D1F7C4; color: #16A34A; }
+        .icon-orange { background: #FEF3C7; color: #F59E0B; }
+
+        .chapter-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .chapter-header {
+            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            color: var(--white);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chapter-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .chapter-total .label {
+            font-size: 0.875rem;
+            color: var(--cueva-electric);
+            opacity: 0.9;
+        }
+
+        .chapter-total .amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--gray-50);
+        }
+
+        th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+
+        tbody tr {
+            border-bottom: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        td {
+            padding: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .partida-codigo {
+            font-weight: 700;
+            color: var(--cueva-navy);
+            min-width: 90px;
+            font-family: var(--font-mono);
+        }
+
+        .partida-desc {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .partida-comment {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            line-height: 1.4;
+        }
+
+        /* Inputs mejorados */
+        .input-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .input-cantidad, .input-precio {
+            width: 100px;
+            padding: 0.75rem 0.5rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background: var(--white);
+            color: var(--gray-900);
+            transition: all 0.2s ease;
+            font-family: var(--font-mono);
+        }
+
+        .input-cantidad:focus, .input-precio:focus {
+            outline: none;
+            border-color: var(--cueva-electric);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+            transform: scale(1.02);
+        }
+
+        .input-cantidad:hover, .input-precio:hover {
+            border-color: var(--cueva-sky);
+        }
+
+        .currency-symbol {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+
+        .unit-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--cueva-navy);
+        }
+
+        .partida-total {
+            font-weight: 700;
+            color: var(--cueva-navy);
+            font-size: 0.95rem;
+            padding: 0.5rem;
+            background: rgba(0, 212, 170, 0.05);
+            border-radius: 6px;
+            text-align: center;
+            font-family: var(--font-mono);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        /* Hero Section para Menorca */
+        .hero-card {
+            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(27, 41, 81, 0.85), 
+                rgba(30, 41, 59, 0.85));
+            z-index: 1;
+        }
+
+        .hero-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-analisis {
+            background-image: url('Public/Fotos/Generales/Imagen1.jpg');
+        }
+
+        .hero-propuesta {
+            background-image: url('Public/Fotos/Generales/Imagen2.jpg');
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--cueva-electric);
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cueva-electric);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        .hero-icon {
+            text-align: center;
+        }
+
+        .hero-icon-circle {
+            width: 120px;
+            height: 120px;
+            background: var(--cueva-electric);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 4rem;
+            color: var(--white);
+        }
+
+        /* Instagram-style gallery */
+        .instagram-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .gallery-item-large {
+            grid-row: span 2;
+        }
+
+        .gallery-item-large img {
+            height: 400px;
+        }
+
+        .gallery-item-medium img {
+            height: 250px;
+        }
+
+        .gallery-item-small img {
+            height: 200px;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: white;
+            padding: 1.25rem;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .gallery-overlay p {
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Análisis comparativo */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            border-left: 4px solid var(--cueva-electric);
+        }
+
+        .impact-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .impact-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 1.5rem;
+        }
+
+        .impact-value {
+            text-align: right;
+        }
+
+        .impact-value .number {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--cueva-electric);
+        }
+
+        .impact-value .unit {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .impact-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+
+        .impact-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .progress-bar {
+            margin-top: 0.75rem;
+            height: 8px;
+            background: var(--gray-100);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--cueva-electric);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Condiciones */
+        .conditions-section {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .conditions-header {
+            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            color: var(--white);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .conditions-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .condition-tab {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 6px;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .condition-tab:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .condition-tab.active {
+            background: var(--cueva-electric);
+        }
+
+        .condition-content {
+            padding: 1.5rem;
+            display: none;
+        }
+
+        .condition-content.active {
+            display: block;
+        }
+
+        .condition-group {
+            margin-bottom: 2rem;
+        }
+
+        .condition-group h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--cueva-coral);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .condition-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .condition-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-200);
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        .condition-list li:last-child {
+            border-bottom: none;
+        }
+
+        .condition-number {
+            font-weight: 700;
+            color: var(--cueva-navy);
+            margin-right: 0.5rem;
+        }
+
+        /* Documentación */
+        .downloads-hero {
+            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .downloads-hero h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .downloads-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .download-stat {
+            text-align: center;
+        }
+
+        .download-stat .number {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--cueva-electric);
+            display: block;
+        }
+
+        .download-stat .label {
+            font-size: 0.875rem;
+            color: var(--gray-300);
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .download-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .download-item:hover {
+            background: var(--gray-100);
+        }
+
+        .download-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .download-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 1.25rem;
+        }
+
+        .download-details h4 {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.25rem;
+        }
+
+        .download-details p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .download-details .meta {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        .btn-download {
+            padding: 0.5rem 1rem;
+            background: var(--cueva-electric);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-download:hover {
+            background: var(--cueva-sky);
+        }
+
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--cueva-electric);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .hidden { display: none !important; }
+        .text-teal { color: var(--cueva-electric); }
+        .text-orange { color: var(--cueva-coral); }
+        .text-green { color: #16A34A; }
+        .text-blue { color: var(--cueva-sky); }
+        .text-purple { color: #7C3AED; }
+
+        @media (max-width: 768px) {
+            .splash-symbol {
+                width: 120px;
+                height: 120px;
+            }
+
+            .splash-circle {
+                width: 120px;
+                height: 120px;
+            }
+
+            .splash-title {
+                font-size: 3rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 0;
+            }
+
+            .nav-item {
+                flex: 1;
+                justify-content: center;
+                padding: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .input-cantidad, .input-precio {
+                width: 90px;
+                font-size: 0.8rem;
+            }
+
+            .instagram-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.5rem;
+            }
+
+            .gallery-item-large img {
+                height: 300px;
+            }
+
+            .gallery-item-medium img {
+                height: 200px;
+            }
+
+            .gallery-item-small img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen / Portada -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-logo">
+            <div class="splash-symbol">
+                <div class="splash-circle"></div>
+                <div class="splash-element splash-hex"></div>
+                <div class="splash-element splash-hex"></div>
+                <div class="splash-element"></div>
+                <div class="splash-element"></div>
+                <div class="splash-element"></div>
+                <div class="splash-element splash-hex"></div>
+            </div>
+            <h1 class="splash-title">CUEVA</h1>
+            <p class="splash-subtitle">Sistema Universal de Construcción</p>
+            <p class="splash-tagline">Son Parc, Menorca - 10 Viviendas Unifamiliares para Cot & Partners</p>
+            <div class="splash-progress">
+                <div class="splash-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-animated">
+                    <div class="logo-circle"></div>
+                    <div class="logo-element logo-hex"></div>
+                    <div class="logo-element logo-hex"></div>
+                    <div class="logo-element"></div>
+                    <div class="logo-element"></div>
+                    <div class="logo-element"></div>
+                    <div class="logo-element logo-hex"></div>
+                </div>
+                <div class="logo-text">
+                    <h1>CUEVA</h1>
+                    <p>Presupuesto Interactivo - Son Parc Menorca</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-primary" onclick="descargarPresupuesto()">
+                    <i class="fas fa-download"></i>
+                    Exportar PDF
+                </button>
+                <div class="date-info">
+                    <p>Fecha</p>
+                    <p id="currentDate"></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-item active" data-tab="presupuesto">
+                <i class="fas fa-calculator"></i>
+                Presupuesto
+            </a>
+            <a href="#" class="nav-item" data-tab="analisis">
+                <i class="fas fa-chart-line"></i>
+                Análisis Comparativo
+            </a>
+            <a href="#" class="nav-item" data-tab="propuesta">
+                <i class="fas fa-bolt"></i>
+                Propuesta CUEVA
+            </a>
+            <a href="#" class="nav-item" data-tab="colaboracion">
+                <i class="fas fa-handshake"></i>
+                Historia Colaboración
+            </a>
+            <a href="#" class="nav-item" data-tab="condiciones">
+                <i class="fas fa-file-contract"></i>
+                Condiciones
+            </a>
+            <a href="#" class="nav-item" data-tab="descargas">
+                <i class="fas fa-download"></i>
+                Documentación
+            </a>
+            <a href="#" class="nav-item" data-tab="contacto">
+                <i class="fas fa-envelope"></i>
+                Contacto
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="project-info">
+            <div class="info-item">
+                <h3>Cliente</h3>
+                <p>Cot & Partners</p>
+            </div>
+            <div class="info-item">
+                <h3>Ubicación</h3>
+                <p>Son Parc, Menorca - Islas Baleares</p>
+            </div>
+            <div class="info-item">
+                <h3>Tipología</h3>
+                <p>Viviendas Unifamiliares</p>
+            </div>
+            <div class="info-item">
+                <h3>Unidades</h3>
+                <div>
+                    <input type="number" id="unidades" value="10" min="1" onchange="actualizarTotales()">
+                    <span>viviendas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN PRESUPUESTO -->
+        <div id="presupuesto-section" class="content-section active">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Total por Unidad</h4>
+                            <p class="amount text-blue" id="totalUnidad">174.492,10 €</p>
+                        </div>
+                        <div class="summary-icon icon-blue">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Total Proyecto</h4>
+                            <p class="amount text-teal" id="totalProyecto">1.744.921,00 €</p>
+                        </div>
+                        <div class="summary-icon icon-teal">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Superficie Total</h4>
+                            <p class="amount text-green" id="superficieTotal">8.661,8 m²</p>
+                            <p class="subtitle">866,18 m² por vivienda</p>
+                        </div>
+                        <div class="summary-icon icon-green">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Plazo Estimado</h4>
+                            <p class="amount text-orange">4-5 meses</p>
+                            <p class="subtitle">vs 18 meses tradicional</p>
+                        </div>
+                        <div class="summary-icon icon-orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">04 - ESTRUCTURA Y ELEMENTOS PREFABRICADOS</h3>
+                    <div class="chapter-total">
+                        <div class="label">Subtotal</div>
+                        <div class="amount" id="subtotal-04">64.443,60 €</div>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Unidad</th>
+                                <th class="text-center">Precio Unit.</th>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="partida-codigo">04.02</td>
+                                <td>
+                                    <div class="partida-desc">FORJADO REUTILIZABLE UNIDIRECCIONAL MIXTO DE HORMIGÓN ARMADO</div>
+                                    <div class="partida-comment">Forjado unidireccional prefabricado y reutilizable de 30 cm de canto, realizado con una capa de placas EDRO aligerada de hormigón armado de 30 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm) unidas entre sí mediante placas de unión hembra S355 en perfil plano de medidas estándar (400x400mm, 400x200mm, 200x200mm) y espesor 10 mm colocadas en ambas caras de la placa EDRO y conectadas mediante placa de unión hembra en cara superior de placa EDRO y placa de unión macho de acero S355 soldada, con pernos pasantes de alta resistencia de 24mm de mm de diámetro y 320mm de longitud total, atornillados con arandela, tuerca y par de apriete controlado de 800N, apoyada directamente sobre pilares o muros de carga. El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero incluye las vigas y los pilares.</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-cantidad" value="330.48" step="0.01" data-row="0" data-chapter="04">
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="unit-label">m²</span></td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-precio" value="195.00" step="0.01" data-row="0" data-chapter="04">
+                                        <span class="currency-symbol">€</span>
+                                    </div>
+                                </td>
+                                <td class="text-right partida-total" data-total="0">64.443,60 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">07 - CERRAMIENTOS Y DIVISIONES</h3>
+                    <div class="chapter-total">
+                        <div class="label">Subtotal</div>
+                        <div class="amount" id="subtotal-07">110.048,50 €</div>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Unidad</th>
+                                <th class="text-center">Precio Unit.</th>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="partida-codigo">07.06</td>
+                                <td>
+                                    <div class="partida-desc">FACHADA REUTILIZABLE UNIDIRECCIONAL HORMIGÓN GRIS</div>
+                                    <div class="partida-comment">Fachada unidireccional prefabricada y reutilizable de 16 cm de canto, realizada con una capa de placas EDRO macizas de hormigón armado de 16 cm de canto y dimensiones estándar o derivadas de la estándar (600x300cm, 300x300cm, 300x150cm, 150x150cm) unidas entre sí mediante placas de unión hembra S355 en perfil vertical de medidas estándar (400x400mm, 400x200mm, 200x200mm) y espesor 10 mm colocadas en una cara de la placa EDRO y conectadas a la cara superior de placa EDRO y distribuidas cada 3 metros, con pernos de alta resistencia de 24mm de mm de diámetro y 280mm de longitud total, atornillados con arandela, tuerca y par de apriete controlado de 800N, con luces hasta 6 m y altura libre de planta de hasta 3 m, apoyada directamente.Terminación rugosa tipo Enfoscado en GRIS. El precio incluye el conformado de elementos en taller industrial con medidas estándar o especiales y el montaje en el lugar definitivo de su colocación en obra.</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-cantidad" value="535.70" step="0.01" data-row="0" data-chapter="07">
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="unit-label">m²</span></td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-precio" value="205.00" step="0.01" data-row="0" data-chapter="07">
+                                        <span class="currency-symbol">€</span>
+                                    </div>
+                                </td>
+                                <td class="text-right partida-total" data-total="0">109.818,50 €</td>
+                            </tr>
+                            <tr>
+                                <td class="partida-codigo">04.01</td>
+                                <td>
+                                    <div class="partida-desc">SOLADO DE HORMIGÓN REUTILIZABLE, TERMINACIÓN RAYADA + HUECOS DRENAJE</div>
+                                    <div class="partida-comment">Solado prefabricado y reutilizable de 14 cm de canto total, realizado con placas EDRO INFRAESTRUCTURA macizas de hormigón armado de 14 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm). El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero no incluye la capa de hormigón de limpieza ni cimentación.</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-cantidad" value="1.00" step="0.01" data-row="1" data-chapter="07">
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="unit-label">m²</span></td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-precio" value="95.00" step="0.01" data-row="1" data-chapter="07">
+                                        <span class="currency-symbol">€</span>
+                                    </div>
+                                </td>
+                                <td class="text-right partida-total" data-total="1">95,00 €</td>
+                            </tr>
+                            <tr>
+                                <td class="partida-codigo">07.10</td>
+                                <td>
+                                    <div class="partida-desc">VALLADO PERIMETRAL ELEMENTOS PREFABRICADOS 120MM</div>
+                                    <div class="partida-comment">Vallado formado por paneles Valla EDRO prefabricados de hormigón armado de 12, de espesor, de ancho estándar (3m o 1,5m) o personalizado de dimensiones derivadas de las estándar, con altura libre de planta de hasta Xm, unidos entre sí mediante placas de unión metálicas ocultas atornilladas, empotre o vaina de conexión.</div>
+                                </td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-cantidad" value="1.00" step="0.01" data-row="2" data-chapter="07">
+                                    </div>
+                                </td>
+                                <td class="text-center"><span class="unit-label">m²</span></td>
+                                <td class="text-center">
+                                    <div class="input-container">
+                                        <input type="number" class="input-precio" value="135.00" step="0.01" data-row="2" data-chapter="07">
+                                        <span class="currency-symbol">€</span>
+                                    </div>
+                                </td>
+                                <td class="text-right partida-total" data-total="2">135,00 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN ANÁLISIS COMPARATIVO -->
+        <div id="analisis-section" class="content-section">
+            <div class="hero-card hero-analisis">
+                <div class="hero-card-content">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h2>CUEVA vs Construcción Tradicional</h2>
+                            <p class="hero-subtitle">Análisis Comparativo para Menorca</p>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-number">70%</span>
+                                    <span class="stat-label">Más Rápido</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">Reutilizable</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">0</span>
+                                    <span class="stat-label">Residuos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-icon">
+                            <div class="hero-icon-circle">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <p style="font-size: 0.875rem; color: var(--gray-300);">Impacto medible y verificable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-card-header">
+                        <i class="fas fa-clock impact-icon text-orange"></i>
+                        <div class="impact-value">
+                            <p class="number">13-19</p>
+                            <p class="unit">meses menos</p>
+                        </div>
+                    </div>
+                    <h4 class="impact-title">Tiempo de Construcción</h4>
+                    <p class="impact-desc">CUEVA: 4-5 meses vs Tradicional: 18-24 meses</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-card-header">
+                        <i class="fas fa-euro-sign impact-icon text-green"></i>
+                        <div class="impact-value">
+                            <p class="number">350.000</p>
+                            <p class="unit">€ ahorro total</p>
+                        </div>
+                    </div>
+                    <h4 class="impact-title">Ahorro Económico Directo</h4>
+                    <p class="impact-desc">Reducción costos construcción + financiación</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-card-header">
+                        <i class="fas fa-ship impact-icon text-blue"></i>
+                        <div class="impact-value">
+                            <p class="number">60</p>
+                            <p class="unit">% menos viajes</p>
+                        </div>
+                    </div>
+                    <h4 class="impact-title">Logística Insular Optimizada</h4>
+                    <p class="impact-desc">Prefabricación en península, montaje eficiente</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <div class="impact-card">
+                    <div class="impact-card-header">
+                        <i class="fas fa-recycle impact-icon text-teal"></i>
+                        <div class="impact-value">
+                            <p class="number">95</p>
+                            <p class="unit">% reutilizable</p>
+                        </div>
+                    </div>
+                    <h4 class="impact-title">Economía Circular Completa</h4>
+                    <p class="impact-desc">Componentes desmontables y reutilizables</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Ventajas Exclusivas Sistema CUEVA</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(0, 212, 170, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--cueva-electric);">
+                            <h4 style="color: var(--cueva-electric); margin-bottom: 0.75rem;"><i class="fas fa-brain" style="margin-right: 0.5rem;"></i>Gemelos Digitales Sincronizados</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Monitorización continua de componentes, fabricación, montaje y rendimiento energético en tiempo real.</p>
+                            <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Control calidad automatizado 24/7</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Gestión inteligente del sistema</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Pasaporte Digital de Producto (DPP)</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--cueva-amber);">
+                            <h4 style="color: var(--cueva-amber); margin-bottom: 0.75rem;"><i class="fas fa-industry" style="margin-right: 0.5rem;"></i>Industrialización 4.0 Avanzada</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Integración completa de robótica, digitalización y automatización constructiva.</p>
+                            <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Automatización 100% fases constructivas</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Calidad total verificada</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Eficiencia productiva máxima</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(34, 197, 94, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22C55E;">
+                            <h4 style="color: #22C55E; margin-bottom: 0.75rem;"><i class="fas fa-seedling" style="margin-right: 0.5rem;"></i>Regeneración Ambiental Activa</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Sistema regenerativo con impacto ambiental positivo medible y certificado.</p>
+                            <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Marco Level(s) UE implementado</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Contribución activa regeneración ambiental</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Certificación A+ energética</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(139, 69, 19, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8B4513;">
+                            <h4 style="color: #8B4513; margin-bottom: 0.75rem;"><i class="fas fa-network-wired" style="margin-right: 0.5rem;"></i>Ecosistema Colaborativo Global</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Red CUEVA que conecta proyectos, socios y tecnologías en marketplace global.</p>
+                            <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Hub global de colaboración</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Intercambio componentes y servicios</li>
+                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Escalabilidad infinita</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Precisión Matemática</h4>
+                            <p class="amount text-purple">Universal</p>
+                            <p class="subtitle">Proporciones geométricas exactas</p>
+                        </div>
+                        <div class="summary-icon" style="background: rgba(139, 69, 19, 0.1); color: #8B4513;">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Reducción Residuos</h4>
+                            <p class="amount text-green">100%</p>
+                            <p class="subtitle">Cero residuos construcción</p>
+                        </div>
+                        <div class="summary-icon icon-green">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Valor Premium Mercado</h4>
+                            <p class="amount text-teal">+35%</p>
+                            <p class="subtitle">Revalorización inmediata</p>
+                        </div>
+                        <div class="summary-icon icon-teal">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN PROPUESTA CUEVA -->
+        <div id="propuesta-section" class="content-section">
+            <div class="hero-card hero-propuesta">
+                <div class="hero-card-content">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h2>CUEVA en Menorca</h2>
+                            <p class="hero-subtitle">Sistema Universal para el Paraíso Mediterráneo</p>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-number">10</span>
+                                    <span class="stat-label">Viviendas Unifamiliares</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">95%</span>
+                                    <span class="stat-label">Componentes reutilizables</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">A++</span>
+                                    <span class="stat-label">Eficiencia energética</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-icon">
+                            <div class="hero-icon-circle">
+                                <i class="fas fa-island-tropical"></i>
+                            </div>
+                            <p style="font-size: 0.875rem; color: var(--gray-300);">Resistencia marina garantizada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galería Visual CUEVA tipo Instagram -->
+            <div class="chapter-card" style="margin-bottom: 1.5rem;">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Sistema CUEVA en Acción</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="instagram-gallery">
+                        <div class="gallery-item gallery-item-large">
+                            <img src="Public/Fotos/Generales/Imagen3.jpg" alt="Sistema CUEVA - Estructura Finalizada">
+                            <div class="gallery-overlay">
+                                <h4>Estructura Finalizada</h4>
+                                <p>Calidad constructiva excepcional</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Generales/Imagen4.jpg" alt="Sistema CUEVA - Eficiencia Constructiva">
+                            <div class="gallery-overlay">
+                                <h4>Eficiencia Constructiva</h4>
+                                <p>4-5 meses vs 18 tradicional</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen5.jpg" alt="Sistema CUEVA - Precisión Modular">
+                            <div class="gallery-overlay">
+                                <h4>Precisión Modular</h4>
+                                <p>Calidad industrial garantizada</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen6.jpg" alt="Sistema CUEVA - Sostenibilidad Total">
+                            <div class="gallery-overlay">
+                                <h4>Sostenibilidad Total</h4>
+                                <p>95% componentes reutilizables</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Generales/Imagen7.jpg" alt="Sistema CUEVA - Resultados Finales">
+                            <div class="gallery-overlay">
+                                <h4>Resultados Finales</h4>
+                                <p>Excelencia constructiva garantizada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Resistencia Marina</h4>
+                            <p class="amount text-blue">50+ años</p>
+                            <p class="subtitle">Ambiente salino</p>
+                        </div>
+                        <div class="summary-icon icon-blue">
+                            <i class="fas fa-water"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Integración Paisajística</h4>
+                            <p class="amount text-green">100%</p>
+                            <p class="subtitle">Respeto al entorno</p>
+                        </div>
+                        <div class="summary-icon icon-green">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Eficiencia Logística</h4>
+                            <p class="amount text-orange">-60%</p>
+                            <p class="subtitle">Transporte insular</p>
+                        </div>
+                        <div class="summary-icon icon-orange">
+                            <i class="fas fa-ship"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Valor de Mercado</h4>
+                            <p class="amount text-teal">+35%</p>
+                            <p class="subtitle">Premium sostenible</p>
+                        </div>
+                        <div class="summary-icon icon-teal">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Ventajas Específicas para Menorca</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2563EB;">
+                            <h4 style="color: #2563EB; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-shield-alt"></i>Resistencia Marina Certificada
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Hormigón especial con aditivos anti-corrosión para ambiente salino extremo de Menorca.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Aceros galvanizados marinos</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Sellados especiales ambientes salinos</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Garantía 50+ años ambiente marino</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(255, 107, 74, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-coral);">
+                            <h4 style="color: var(--cueva-coral); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-ship"></i>Logística Insular Optimizada
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Solución integral diseñada específicamente para la realidad logística de Menorca.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Prefabricación en península</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Transporte marítimo eficiente</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Coordinación portuaria Mahón</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(14, 165, 233, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-sky);">
+                            <h4 style="color: var(--cueva-sky); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-leaf"></i>Sostenibilidad Insular
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Respeto máximo al ecosistema mediterráneo único de Menorca, Reserva de la Biosfera.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Mínimo impacto ambiental</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Integración paisajística total</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Certificación BREEAM insular</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-amber);">
+                            <h4 style="color: var(--cueva-amber); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-chart-line"></i>Valor Premium Turístico
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Aprovechamiento del potencial turístico de Menorca con propiedades de alto valor.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>ROI acelerado turístico</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Revalorización inmediata +35%</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Mantenimiento prácticamente nulo</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(139, 69, 19, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #8B4513;">
+                            <h4 style="color: #8B4513; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-home"></i>Adaptación Bioclimática
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Diseño específico para el clima mediterráneo de Menorca con sus vientos y condiciones únicas.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Resistencia vientos de tramontana</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Orientación solar optimizada</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Eficiencia energética A++</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(168, 85, 247, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #A855F7;">
+                            <h4 style="color: #A855F7; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-clock"></i>Ventana Temporal Perfecta
+                            </h4>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Aprovechamiento de la temporada turística de Menorca con construcción fuera de período alto.</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Construcción otoño-invierno</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Entrega para temporada alta</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>ROI inmediato turístico</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN HISTORIA COLABORACIÓN -->
+        <div id="colaboracion-section" class="content-section">
+            <div class="hero-card">
+                <div class="hero-card-content">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <h2>La Historia de Son Parc</h2>
+                            <p class="hero-subtitle">CUEVA + OADAC + Licenciatario Balear = Éxito Multiplicado Exponencialmente</p>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span class="stat-number">16</span>
+                                    <span class="stat-label">Viviendas Modulares</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">3.200</span>
+                                    <span class="stat-label">m² Área Total</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Tasa de Éxito</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-icon">
+                            <div class="hero-icon-circle">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <p style="font-size: 0.875rem; color: var(--gray-300);">Colaboración = Innovación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Galería de Colaboración tipo Instagram -->
+            <div class="chapter-card" style="margin-bottom: 1.5rem;">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Momentos de la Colaboración</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="instagram-gallery">
+                        <div class="gallery-item gallery-item-large">
+                            <img src="Public/Fotos/Colaboración/DEOF6384.JPG" alt="Equipo CUEVA en reunión estratégica">
+                            <div class="gallery-overlay">
+                                <h4>Reunión Estratégica</h4>
+                                <p>Planificación colaborativa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Colaboración/IMG_4312.PNG" alt="Planificación del proyecto Son Parc">
+                            <div class="gallery-overlay">
+                                <h4>Planificación Proyecto</h4>
+                                <p>Diseño colaborativo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_4314.PNG" alt="Revisión técnica de componentes">
+                            <div class="gallery-overlay">
+                                <h4>Revisión Técnica</h4>
+                                <p>Análisis componentes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_4315.PNG" alt="Análisis de especificaciones">
+                            <div class="gallery-overlay">
+                                <h4>Análisis Especificaciones</h4>
+                                <p>Detalles técnicos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Colaboración/IMG_4318.PNG" alt="Coordinación logística insular">
+                            <div class="gallery-overlay">
+                                <h4>Logística Insular</h4>
+                                <p>Coordinación Menorca</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_4319.PNG" alt="Equipo colaborativo en acción">
+                            <div class="gallery-overlay">
+                                <h4>Equipo en Acción</h4>
+                                <p>Sinergia colaborativa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Ecosistema Colaborativo en Acción</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <p style="color: var(--gray-700); margin-bottom: 2rem; font-size: 1rem; line-height: 1.6;">
+                        El proyecto Son Parc representa la demostración perfecta de cómo la colaboración bajo los sistemas CUEVA multiplica exponencialmente los resultados a través 
+                        de sinergias tecnológicas, gemelos digitales sincronizados y procesos colaborativos reales.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(14, 165, 233, 0.1)); padding: 2rem; border-radius: 12px; border: 1px solid rgba(0, 212, 170, 0.3);">
+                            <h4 style="color: var(--cueva-electric); margin-bottom: 1rem; font-size: 1.25rem; text-align: center;">
+                                <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>Resultados de la Colaboración
+                            </h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">2024-2025</div>
+                                    <div style="color: var(--gray-600); font-size: 0.875rem;">Cronología del Proyecto</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">16</div>
+                                    <div style="color: var(--gray-600); font-size: 0.875rem;">Viviendas Entregadas</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">100%</div>
+                                    <div style="color: var(--gray-600); font-size: 0.875rem;">Tasa de Éxito</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">∞</div>
+                                    <div style="color: var(--gray-600); font-size: 0.875rem;">Escalabilidad</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800)); padding: 2rem; border-radius: 12px; color: var(--white);">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="width: 60px; height: 60px; background: var(--cueva-electric); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <h4 style="color: var(--white); margin: 0; font-size: 1.25rem;">CUEVA</h4>
+                            </div>
+                            <p style="color: var(--gray-300); margin-bottom: 1rem; font-size: 0.875rem;">Sistema Universal de Construcción</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Tecnología modular universal</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Gemelos digitales sincronizados</li>
+                                <li style="margin-bottom: 0; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Industrialización 4.0 avanzada</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--cueva-amber);">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="width: 60px; height: 60px; background: var(--cueva-amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h4 style="color: var(--cueva-amber); margin: 0; font-size: 1.25rem;">OADAC</h4>
+                            </div>
+                            <p style="color: var(--gray-600); margin-bottom: 1rem; font-size: 0.875rem;">Organización Descentralizada de Activos Constructivos</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Red profesional colaborativa</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Tecnologías descentralizadas</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Sistemas modulares integrados</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="background: rgba(255, 107, 74, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--cueva-coral);">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="width: 60px; height: 60px; background: var(--cueva-coral); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
+                                    <i class="fas fa-island-tropical"></i>
+                                </div>
+                                <h4 style="color: var(--cueva-coral); margin: 0; font-size: 1.25rem;">Licenciatario Balear</h4>
+                            </div>
+                            <p style="color: var(--gray-600); margin-bottom: 1rem; font-size: 0.875rem;">Especialista Local en Islas Baleares</p>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Conocimiento insular especializado</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Logística marítima optimizada</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Red comercial establecida</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(34, 197, 94, 0.1)); padding: 2rem; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.3); text-align: center;">
+                        <h4 style="color: #A855F7; margin-bottom: 1rem; font-size: 1.5rem;">
+                            <i class="fas fa-infinity" style="margin-right: 0.5rem;"></i>Sinergia = Multiplicación Exponencial
+                        </h4>
+                        <p style="color: var(--gray-700); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.6;">
+                            La combinación de CUEVA + OADAC + Licenciatario Balear crea un ecosistema donde 1+1+1 = ∞
+                        </p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">∞</div>
+                                <div style="color: var(--gray-700); font-size: 0.875rem;">Escalabilidad</div>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">100%</div>
+                                <div style="color: var(--gray-700); font-size: 0.875rem;">Éxito</div>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">24/7</div>
+                                <div style="color: var(--gray-700); font-size: 0.875rem;">Colaboración</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Sinergia Tecnológica</h4>
+                            <p class="amount text-blue">Máxima</p>
+                            <p class="subtitle">Multiplicación exponencial</p>
+                        </div>
+                        <div class="summary-icon icon-blue">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Impacto Local</h4>
+                            <p class="amount text-green">Positivo</p>
+                            <p class="subtitle">Desarrollo sostenible</p>
+                        </div>
+                        <div class="summary-icon icon-green">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Red Colaborativa</h4>
+                            <p class="amount text-teal">Global</p>
+                            <p class="subtitle">Conocimiento compartido</p>
+                        </div>
+                        <div class="summary-icon icon-teal">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-card-content">
+                        <div class="summary-text">
+                            <h4>Futuro Constructivo</h4>
+                            <p class="amount text-orange">Hoy</p>
+                            <p class="subtitle">Realidad demostrada</p>
+                        </div>
+                        <div class="summary-icon icon-orange">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN CONDICIONES -->
+        <div id="condiciones-section" class="content-section">
+            <div class="conditions-section">
+                <div class="conditions-header">
+                    <h3>Condiciones Contractuales</h3>
+                    <div class="conditions-nav">
+                        <button class="condition-tab active" data-condition="generales">Generales</button>
+                        <button class="condition-tab" data-condition="estructura">Estructura</button>
+                        <button class="condition-tab" data-condition="pago">Pago</button>
+                        <button class="condition-tab" data-condition="insulares">Insulares</button>
+                    </div>
+                </div>
+
+                <div class="condition-content active" id="generales-content">
+                    <div class="condition-group">
+                        <h4>Condiciones Generales</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">I.</span> La vigencia de esta oferta se limita a un mes.</li>
+                            <li><span class="condition-number">II.</span> En esta oferta no está incluido el IVA, que se facturará al tipo vigente en cada momento.</li>
+                            <li><span class="condition-number">III.</span> Los precios no contemplan y por tanto serán objeto de revisión global, las subidas extraordinarias de las materias primas, auxiliares, transportes o grúas, entendiendo por subidas extraordinarias aquellas que afectando de manera generalizada al sector superen el 10% en un plazo no superior a 12 meses.</li>
+                            <li><span class="condition-number">IV.</span> Durante el tiempo que dure la obra el cliente ha de disponer en obra suministro de electricidad y agua.</li>
+                            <li><span class="condition-number">V.</span> El presupuesto facilitado es orientativo hasta confirmación definitiva de medidas y tipología. Las modificaciones posteriores a la fecha de la presente oferta serán objeto de revisión y nueva valoración.</li>
+                            <li><span class="condition-number">VI.</span> Los portes están incluidos en el precio hasta el puerto de Mahón.</li>
+                            <li><span class="condition-number">VII.</span> Los medios de elevación para la descarga y colocación están incluidos en el precio, debiendo de realizarse los trabajos de forma continuada. Los tiempos de espera o paralizaciones que se contabilicen por causas ajenas a nuestra empresa, se facturarán a cargo del cliente.</li>
+                            <li><span class="condition-number">VIII.</span> Los materiales contratados habrán pasado los controles de calidad pertinentes y dispondrán del marcado CE y certificaciones específicas para ambiente marino.</li>
+                            <li><span class="condition-number">IX.</span> Para la realización del montaje la zona de trabajo ha de estar debidamente acondicionada, de forma que puedan acceder vehículos pesados al interior de la obra y a su perímetro con total facilidad.</li>
+                            <li><span class="condition-number">X.</span> El presente presupuesto queda condicionado a la suscripción posterior de contrato entre las partes, sin el cual, no producirá efecto alguno.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="condition-content" id="estructura-content">
+                    <div class="condition-group">
+                        <h4>Condiciones Estructura Horizontal</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">I.</span> En el montaje y colocación de forjados no está incluida la realización o ejecución in situ de huecos o pasantes, ni relleno de cobijas o similar.</li>
+                            <li><span class="condition-number">II.</span> La apertura de huecos o pasantes se facturará por hora de administración.</li>
+                            <li><span class="condition-number">III.</span> Los cortes longitudinales se facturarán a 15€/m.</li>
+                            <li><span class="condition-number">IV.</span> El suministro está considerado sobre camión tráiler, el tiempo máximo de descarga por camión contemplado en el presupuesto es de 2 horas, a partir de ese tiempo se facturará a 35€/h de espera.</li>
+                            <li><span class="condition-number">V.</span> Toda la estructura metálica aportada en obra será miniada en fábrica, con tratamiento anticorrosivo marino.</li>
+                        </ul>
+                    </div>
+
+                    <div class="condition-group">
+                        <h4>Condiciones Estructura Vertical</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">I.</span> Los precios están considerados con paneles totalmente lisos, sin ningún tipo de adorno o hendidura, a excepción de las partidas que especifiquen lo contrario.</li>
+                            <li><span class="condition-number">II.</span> Los paneles se fabrican con materias primas naturales por lo que no se garantiza la uniformidad del tono de color.</li>
+                            <li><span class="condition-number">III.</span> Los precios establecidos se aplicarán sobre mediciones reales de obra, las que aparecen en este documento son teóricas.</li>
+                            <li><span class="condition-number">IV.</span> Para la colocación de los paneles, la estructura existente no debe disponer de vuelos ni salientes en niveles superiores al nivel de montaje.</li>
+                            <li><span class="condition-number">V.</span> Todos los elementos incluyen tratamiento específico para resistencia marina y ambiente salino.</li>
+                            <li><span class="condition-number">VI.</span> No está incluido el retacado con mortero en las zonas inferiores de panel prefabricado.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="condition-content" id="pago-content">
+                    <div class="condition-group">
+                        <h4>Condiciones de Pago</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">I.</span> 30% a la firma del presente presupuesto, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">II.</span> 30% al comienzo de la fabricación, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">III.</span> 25% al envío marítimo a Menorca, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">IV.</span> 15% al finalizar el montaje, por transferencia bancaria a 7 días fecha factura.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="condition-content" id="insulares-content">
+                    <div class="condition-group">
+                        <h4>Condiciones Específicas Insulares</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">1.</span> El transporte marítimo está incluido hasta el puerto de Mahón, pero no el transporte terrestre desde puerto a obra.</li>
+                            <li><span class="condition-number">2.</span> Los horarios de descarga en puerto se coordinarán con las autoridades portuarias de Menorca.</li>
+                            <li><span class="condition-number">3.</span> Los elementos prefabricados incluyen tratamiento específico para resistencia a ambiente marino y salitre.</li>
+                            <li><span class="condition-number">4.</span> Se requiere coordinación previa con las autoridades insulares para permisos de montaje y grúas.</li>
+                            <li><span class="condition-number">5.</span> Los plazos de entrega pueden verse afectados por condiciones meteorológicas marítimas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="condition-group">
+                        <h4>Se Incluye Específicamente</h4>
+                        <ul class="condition-list">
+                            <li><span class="condition-number">I.</span> Sellado de juntas exteriores con materiales específicos para ambiente salino.</li>
+                            <li><span class="condition-number">II.</span> Sistemas de anclajes o uniones metálicas con galvanizado marino.</li>
+                            <li><span class="condition-number">III.</span> Transporte marítimo de materiales hasta puerto de Mahón.</li>
+                            <li><span class="condition-number">IV.</span> Medios auxiliares para la descarga portuaria y ejecución de la obra.</li>
+                            <li><span class="condition-number">V.</span> Certificaciones específicas para construcción en Menorca.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DOCUMENTACIÓN -->
+        <div id="descargas-section" class="content-section">
+            <div class="downloads-hero">
+                <h3>Documentación Técnica y Comercial</h3>
+                <div class="downloads-stats">
+                    <div class="download-stat">
+                        <span class="number" id="stat-unidades-docs">10</span>
+                        <span class="label">Viviendas CUEVA</span>
+                    </div>
+                    <div class="download-stat">
+                        <span class="number" id="stat-inversion-docs">1.745k€</span>
+                        <span class="label">Inversión Total</span>
+                    </div>
+                    <div class="download-stat">
+                        <span class="number">4-5</span>
+                        <span class="label">Meses Entrega</span>
+                    </div>
+                    <div class="download-stat">
+                        <span class="number">866</span>
+                        <span class="label">m² por vivienda</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-card">
+                <div class="chapter-header">
+                    <h3 class="chapter-title">Documentación del Proyecto</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="downloads-grid">
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-file-pdf download-icon" style="color: #DC2626;"></i>
+                                <div class="download-details">
+                                    <h4>Presupuesto Son Parc Menorca</h4>
+                                    <p>PDF completo del proyecto para Cot & Partners</p>
+                                    <p class="meta">Actualizado: <span id="current-date-menorca"></span></p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="window.open('Public/pdf/Presupuesto Cots & Partners.pdf', '_blank')">Descargar</button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-file-alt download-icon" style="color: #00D4AA;"></i>
+                                <div class="download-details">
+                                    <h4>Catálogo Técnico EDRO V10</h4>
+                                    <p>Sistema universal constructivo detallado</p>
+                                    <p class="meta">Patente ES 2 569 130 B1 • Especificaciones completas</p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="window.open('Public/pdf/CATALOGO TECNICO EDRO V10.pdf', '_blank')">Descargar</button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-cogs download-icon" style="color: #F59E0B;"></i>
+                                <div class="download-details">
+                                    <h4>Manual de Montaje EDRO V19</h4>
+                                    <p>Guía completa de instalación y montaje</p>
+                                    <p class="meta">Procedimientos • Herramientas • Seguridad</p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="window.open('Public/pdf/MANUAL DE MONTAJE EDRO V19.pdf', '_blank')">Descargar</button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-water download-icon" style="color: #2563EB;"></i>
+                                <div class="download-details">
+                                    <h4>Panel Fachada Hormigón</h4>
+                                    <p>Especificaciones técnicas detalladas</p>
+                                    <p class="meta">Resistencia marina • Durabilidad • Instalación</p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="window.open('Public/pdf/Panel-Fachada-Hormigón.pdf', '_blank')">Descargar</button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-industry download-icon" style="color: #7C3AED;"></i>
+                                <div class="download-details">
+                                    <h4>Componentes Constructivos Industrializados</h4>
+                                    <p>Catálogo completo EDRO</p>
+                                    <p class="meta">Sistema modular • Aplicaciones • Ventajas</p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="window.open('Public/pdf/EDRO-Componentes-Constructivos-Industrializados.pdf', '_blank')">Descargar</button>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-info">
+                                <i class="fas fa-chart-line download-icon" style="color: #16A34A;"></i>
+                                <div class="download-details">
+                                    <h4>Análisis Comparativo Menorca</h4>
+                                    <p>Comparación detallada vs construcción tradicional insular</p>
+                                    <p class="meta">CUEVA vs Tradicional • Ventajas • ROI</p>
+                                </div>
+                            </div>
+                            <button class="btn-download" onclick="exportarComparativo()">Generar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN CONTACTO -->
+        <div id="contacto-section" class="content-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3 class="chapter-title">Información de Contacto</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; background: var(--cueva-electric); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Email Corporativo</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">info@cueva.com</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">ventas@cueva.com</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Respuesta en menos de 24h</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; background: var(--cueva-sky); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Teléfono Directo</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">+34 900 123 456</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">+34 971 123 456 (Baleares)</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Lun-Vie: 9:00-19:00h</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background: var(--cueva-coral); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Delegación Baleares</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">C/ Marina, 25</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">07703 Mahón, Menorca</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Especialista proyectos insulares</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3 class="chapter-title">Solicitar Información</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Nombre completo" id="contact-name">
+                            <input type="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Email corporativo" id="contact-email">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                            <input type="tel" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Teléfono de contacto" id="contact-phone">
+                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Empresa / Estudio" id="contact-company">
+                        </div>
+                        
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem;" id="contact-type">
+                            <option value="">Tipo de consulta</option>
+                            <option value="presupuesto">Solicitar presupuesto personalizado</option>
+                            <option value="visita">Agendar visita técnica Menorca</option>
+                            <option value="presentacion">Presentación comercial</option>
+                            <option value="logistica">Consultas logísticas insulares</option>
+                            <option value="financiacion">Opciones de financiación</option>
+                        </select>
+
+                        <textarea style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; resize: vertical; min-height: 100px; margin-bottom: 1rem;" placeholder="Describe tu proyecto: timeline específico, requisitos ambientales, logística..." rows="4" id="contact-message"></textarea>
+
+                        <button style="width: 100%; padding: 0.75rem 1.5rem; background: var(--cueva-electric); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" onclick="enviarFormulario()">
+                            <span>Solicitar Información</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var presupuestoData = {
+            unidades: 10,
+            estructura: [
+                { codigo: '04.02', cantidad: 330.48, precio: 195.00, total: 64443.60 }
+            ],
+            cerramientos: [
+                { codigo: '07.06', cantidad: 535.70, precio: 205.00, total: 109818.50 },
+                { codigo: '04.01', cantidad: 1.00, precio: 95.00, total: 95.00 },
+                { codigo: '07.10', cantidad: 1.00, precio: 135.00, total: 135.00 }
+            ],
+            subtotalEstructura: 64443.60,
+            subtotalCerramientos: 110048.50,
+            totalUnidad: 174492.10,
+            superficiePorVivienda: 866.18
+        };
+
+        // Splash screen logic
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById('splashScreen').classList.add('hidden');
+            }, 3000);
+            
+            var today = new Date().toLocaleDateString('es-ES');
+            document.getElementById('currentDate').textContent = today;
+            document.getElementById('current-date-menorca').textContent = today;
+
+            setupNavigation();
+            setupInputEvents();
+            setupConditionsNavigation();
+            actualizarTotales();
+        });
+
+        function setupNavigation() {
+            var navItems = document.querySelectorAll('.nav-item');
+            var sections = document.querySelectorAll('.content-section');
+
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var targetTab = this.getAttribute('data-tab');
+
+                    navItems.forEach(function(nav) {
+                        nav.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    sections.forEach(function(section) {
+                        section.classList.remove('active');
+                        if (section.id === targetTab + '-section') {
+                            section.classList.add('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        function setupConditionsNavigation() {
+            var conditionTabs = document.querySelectorAll('.condition-tab');
+            var conditionContents = document.querySelectorAll('.condition-content');
+
+            conditionTabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    conditionTabs.forEach(function(t) {
+                        t.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    var targetCondition = this.getAttribute('data-condition');
+
+                    conditionContents.forEach(function(content) {
+                        content.classList.remove('active');
+                        if (content.id === targetCondition + '-content') {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+        }
+
+        function setupInputEvents() {
+            document.getElementById('unidades').addEventListener('change', actualizarTotales);
+
+            var inputsCantidad = document.querySelectorAll('.input-cantidad');
+            var inputsPrecios = document.querySelectorAll('.input-precio');
+
+            inputsCantidad.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    actualizarPartida(this);
+                });
+            });
+
+            inputsPrecios.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    actualizarPartida(this);
+                });
+            });
+        }
+
+        function actualizarPartida(input) {
+            var row = parseInt(input.getAttribute('data-row'));
+            var chapter = input.getAttribute('data-chapter');
+            var cantidad = parseFloat(input.closest('tr').querySelector('.input-cantidad').value) || 0;
+            var precio = parseFloat(input.closest('tr').querySelector('.input-precio').value) || 0;
+            var total = cantidad * precio;
+
+            if (chapter === '04') {
+                presupuestoData.estructura[row].cantidad = cantidad;
+                presupuestoData.estructura[row].precio = precio;
+                presupuestoData.estructura[row].total = total;
+
+                var totalCell = input.closest('tr').querySelector('[data-total="' + row + '"]');
+                totalCell.textContent = formatCurrency(total);
+
+                var subtotalEstructura = presupuestoData.estructura.reduce(function(sum, p) {
+                    return sum + p.total;
+                }, 0);
+                
+                presupuestoData.subtotalEstructura = subtotalEstructura;
+                document.getElementById('subtotal-04').textContent = formatCurrency(subtotalEstructura);
+            } else if (chapter === '07') {
+                presupuestoData.cerramientos[row].cantidad = cantidad;
+                presupuestoData.cerramientos[row].precio = precio;
+                presupuestoData.cerramientos[row].total = total;
+
+                var totalCell = input.closest('tr').querySelector('[data-total="' + row + '"]');
+                totalCell.textContent = formatCurrency(total);
+
+                var subtotalCerramientos = presupuestoData.cerramientos.reduce(function(sum, p) {
+                    return sum + p.total;
+                }, 0);
+                
+                presupuestoData.subtotalCerramientos = subtotalCerramientos;
+                document.getElementById('subtotal-07').textContent = formatCurrency(subtotalCerramientos);
+            }
+
+            presupuestoData.totalUnidad = presupuestoData.subtotalEstructura + presupuestoData.subtotalCerramientos;
+            actualizarTotales();
+        }
+
+        function actualizarTotales() {
+            var unidades = parseInt(document.getElementById('unidades').value) || 1;
+            presupuestoData.unidades = unidades;
+
+            var totalUnidad = presupuestoData.totalUnidad;
+            var totalProyecto = totalUnidad * unidades;
+            var superficieTotal = presupuestoData.superficiePorVivienda * unidades;
+
+            document.getElementById('totalUnidad').textContent = formatCurrency(totalUnidad);
+            document.getElementById('totalProyecto').textContent = formatCurrency(totalProyecto);
+            document.getElementById('superficieTotal').textContent = formatNumber(superficieTotal) + ' m²';
+            
+            // Update stats in documentation section
+            if (document.getElementById('stat-unidades-docs')) {
+                document.getElementById('stat-unidades-docs').textContent = unidades;
+                document.getElementById('stat-inversion-docs').textContent = Math.round(totalProyecto / 1000) + 'k€';
+            }
+        }
+
+        function descargarPresupuesto() {
+            var contenido = 'CUEVA - PRESUPUESTO SON PARC MENORCA\n' +
+                '=====================================================\n' +
+                'Sistema Universal de Construcción - Patente ES 2 569 130 B1\n' +
+                'Cliente: Cot & Partners\n' +
+                'Proyecto: ' + presupuestoData.unidades + ' Viviendas Unifamiliares - Son Parc, Menorca\n' +
+                'Superficie total: ' + formatNumber(presupuestoData.superficiePorVivienda * presupuestoData.unidades) + ' m²\n' +
+                'Superficie por vivienda: ' + formatNumber(presupuestoData.superficiePorVivienda) + ' m²\n' +
+                'Fecha: ' + new Date().toLocaleDateString('es-ES') + '\n\n' +
+                '=====================================================\n' +
+                'RESUMEN EJECUTIVO\n' +
+                '=====================================================\n\n' +
+                'ESTRUCTURA Y ELEMENTOS PREFABRICADOS\n' +
+                '04.02 - Forjado Reutilizable Unidireccional: ' + formatCurrency(presupuestoData.estructura[0].total) + '\n' +
+                'Cantidad: ' + presupuestoData.estructura[0].cantidad + ' m²\n' +
+                'Precio unitario: ' + formatCurrency(presupuestoData.estructura[0].precio) + '\n' +
+                'Subtotal Estructura: ' + formatCurrency(presupuestoData.subtotalEstructura) + '\n\n' +
+                'CERRAMIENTOS Y DIVISIONES\n' +
+                '07.06 - Fachada Reutilizable Hormigón Gris: ' + formatCurrency(presupuestoData.cerramientos[0].total) + '\n' +
+                'Cantidad: ' + presupuestoData.cerramientos[0].cantidad + ' m²\n' +
+                'Precio unitario: ' + formatCurrency(presupuestoData.cerramientos[0].precio) + '\n' +
+                '04.01 - Solado Hormigón Reutilizable: ' + formatCurrency(presupuestoData.cerramientos[1].total) + '\n' +
+                '07.10 - Vallado Perimetral: ' + formatCurrency(presupuestoData.cerramientos[2].total) + '\n' +
+                'Subtotal Cerramientos: ' + formatCurrency(presupuestoData.subtotalCerramientos) + '\n\n' +
+                '=====================================================\n' +
+                'TOTALES\n' +
+                '=====================================================\n\n' +
+                'Total por Unidad: ' + formatCurrency(presupuestoData.totalUnidad) + '\n' +
+                'Total Proyecto (' + presupuestoData.unidades + ' uds): ' + formatCurrency(presupuestoData.totalUnidad * presupuestoData.unidades) + '\n\n' +
+                '=====================================================\n' +
+                'CARACTERÍSTICAS ESPECÍFICAS MENORCA\n' +
+                '=====================================================\n\n' +
+                'Plazo de Ejecución: 4-5 meses (vs 18 meses tradicional)\n' +
+                'Garantía: De por vida\n' +
+                'Reutilización: 95% de componentes\n' +
+                'Resistencia marina: 50+ años\n' +
+                'Transporte: Incluido hasta puerto Mahón\n' +
+                'Certificaciones: BREEAM, ambiente marino\n\n' +
+                '=====================================================\n' +
+                'VENTAJAS INSULARES\n' +
+                '=====================================================\n\n' +
+                '• Reducción 60% viajes marítimos\n' +
+                '• Optimización logística insular\n' +
+                '• Prefabricación en península\n' +
+                '• Montaje rápido in situ\n' +
+                '• Mínimo impacto ambiental\n' +
+                '• Valor premium del mercado (+35%)\n\n' +
+                'Contacto: info@cueva.com\n' +
+                'Delegación Baleares: +34 971 123 456\n' +
+                'Documento generado: ' + new Date().toLocaleString('es-ES');
+            
+            var elemento = document.createElement('a');
+            elemento.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contenido));
+            elemento.setAttribute('download', 'Presupuesto-CUEVA-Son-Parc-Menorca-' + new Date().toISOString().split('T')[0] + '.txt');
+            elemento.style.display = 'none';
+            document.body.appendChild(elemento);
+            elemento.click();
+            document.body.removeChild(elemento);
+            
+            mostrarNotificacion('Presupuesto descargado correctamente', 'teal');
+        }
+
+        function exportarComparativo() {
+            var contenido = 'CUEVA - ANÁLISIS COMPARATIVO MENORCA\n' +
+                '=====================================================\n' +
+                'Sistema Universal de Construcción vs Construcción Tradicional\n' +
+                'Proyecto: Son Parc, Menorca - ' + presupuestoData.unidades + ' viviendas\n' +
+                'Cliente: Cot & Partners\n' +
+                'Fecha: ' + new Date().toLocaleDateString('es-ES') + '\n\n' +
+                '=====================================================\n' +
+                'COMPARACIÓN SISTEMA CUEVA VS TRADICIONAL\n' +
+                '=====================================================\n\n' +
+                'CUEVA Sistema Universal:\n' +
+                '• Plazo: 4-5 meses\n' +
+                '• Costo: ' + formatCurrency(presupuestoData.totalUnidad * presupuestoData.unidades) + '\n' +
+                '• Superficie: ' + formatNumber(presupuestoData.superficiePorVivienda * presupuestoData.unidades) + ' m²\n' +
+                '• Resistencia marina: 50+ años\n' +
+                '• Reutilización: 95%\n\n' +
+                'Construcción Tradicional Insular:\n' +
+                '• Plazo: 18-24 meses\n' +
+                '• Costo estimado: ' + formatCurrency(presupuestoData.totalUnidad * presupuestoData.unidades * 1.35) + '\n' +
+                '• Mantenimiento: Alto\n' +
+                '• Reutilización: 5%\n\n' +
+                '=====================================================\n' +
+                'VENTAJAS ECONÓMICAS CUEVA\n' +
+                '=====================================================\n\n' +
+                'Ahorro inicial: ' + formatCurrency((presupuestoData.totalUnidad * presupuestoData.unidades * 1.35) - (presupuestoData.totalUnidad * presupuestoData.unidades)) + '\n' +
+                'Ahorro tiempo: 13-19 meses\n' +
+                'Valor premium mercado: +35%\n' +
+                'ROI acelerado: 8-12 meses menos\n\n' +
+                '=====================================================\n' +
+                'VENTAJAS LOGÍSTICAS INSULARES\n' +
+                '=====================================================\n\n' +
+                '• Reducción 60% viajes marítimos\n' +
+                '• Optimización carga contenedores\n' +
+                '• Menor dependencia meteorológica\n' +
+                '• Coordinación portuaria simplificada\n' +
+                '• Reducción costos transporte insular\n\n' +
+                '=====================================================\n' +
+                'SOSTENIBILIDAD Y AMBIENTE\n' +
+                '=====================================================\n\n' +
+                '• Mínimo impacto construcción: -85% residuos\n' +
+                '• Eficiencia energética A++\n' +
+                '• Certificaciones BREEAM/LEED\n' +
+                '• Economía circular: 95% reutilizable\n' +
+                '• Resistencia ambiente salino\n' +
+                '• Integración paisajística\n\n' +
+                'Contacto especialista Baleares:\n' +
+                'Email: baleares@cueva.com\n' +
+                'Teléfono: +34 971 123 456\n' +
+                'Delegación: C/ Marina, 25 - Mahón, Menorca\n\n' +
+                'Documento generado: ' + new Date().toLocaleString('es-ES');
+            
+            var elemento = document.createElement('a');
+            elemento.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contenido));
+            elemento.setAttribute('download', 'Analisis-Comparativo-CUEVA-Menorca-' + new Date().toISOString().split('T')[0] + '.txt');
+            elemento.style.display = 'none';
+            document.body.appendChild(elemento);
+            elemento.click();
+            document.body.removeChild(elemento);
+            
+            mostrarNotificacion('Análisis comparativo generado correctamente', 'teal');
+        }
+
+        function enviarFormulario() {
+            var nombre = document.getElementById('contact-name').value;
+            var email = document.getElementById('contact-email').value;
+            
+            if (!nombre || !email) {
+                mostrarNotificacion('Por favor, completa al menos nombre y email', 'orange');
+                return;
+            }
+
+            mostrarNotificacion('¡Gracias! Te contactaremos en menos de 24h', 'teal');
+            
+            // Limpiar formulario
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-phone').value = '';
+            document.getElementById('contact-company').value = '';
+            document.getElementById('contact-type').value = '';
+            document.getElementById('contact-message').value = '';
+        }
+
+        function mostrarNotificacion(mensaje, tipo) {
+            if (!tipo) tipo = 'teal';
+            
+            var colores = {
+                teal: '#00D4AA',
+                blue: '#2563EB',
+                green: '#16A34A',
+                orange: '#F59E0B',
+                purple: '#7C3AED',
+                yellow: '#EAB308'
+            };
+
+            var notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.background = colores[tipo];
+            notification.innerHTML = '<i class="fas fa-check-circle"></i><span>' + mensaje + '</span>';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(function() { 
+                notification.classList.add('show'); 
+            }, 100);
+            
+            setTimeout(function() {
+                notification.classList.remove('show');
+                setTimeout(function() {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        function formatCurrency(amount, includeSymbol) {
+            if (includeSymbol === undefined) includeSymbol = true;
+            
+            var formatted = new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(amount);
+            
+            return includeSymbol ? formatted + ' €' : formatted;
+        }
+
+        function formatNumber(number) {
+            return new Intl.NumberFormat('es-ES', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 1
+            }).format(number);
+        }
+
+        // Skip splash screen on click
+        document.getElementById('splashScreen').addEventListener('click', function() {
+            this.classList.add('hidden');
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth <= 768) {
+                document.body.classList.add('mobile');
+            } else {
+                document.body.classList.remove('mobile');
+            }
+        });
+
+        console.log('🏠 CUEVA - Sistema Universal de Construcción');
+        console.log('📋 Presupuesto Son Parc Menorca - 10 Viviendas Unifamiliares');
+        console.log('🌊 Especialización ambiente marino y logística insular');
+        console.log('🗺️ Cliente: Cot & Partners');
+        console.log('📏 Superficie: ' + presupuestoData.superficiePorVivienda + ' m² por vivienda');
+    </script>
+</body>
+</html>
