@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CUEVA - Presupuesto Interactivo | Proyecto Son Parc Menorca</title>
+    <title>OADAC - Presupuesto COT & Partners | Proyecto Son Parc Menorca</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Paleta CUEVA Official del Brandbook */
-            --cueva-navy: #1B2951;
-            --cueva-electric: #00D4AA;
-            --cueva-coral: #FF6B4A;
-            --cueva-amber: #F59E0B;
-            --cueva-sky: #0EA5E9;
+            /* Paleta OADAC Profesional */
+            --oadac-navy: #1B2951;
+            --oadac-electric: #00D4AA;
+            --oadac-coral: #FF6B4A;
+            --oadac-amber: #F59E0B;
+            --oadac-sky: #0EA5E9;
             
             /* Grises Refinados */
             --gray-900: #0F172A;
@@ -61,8 +61,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            height: 100vh;
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -100,7 +100,7 @@
 
         .splash-element {
             position: absolute;
-            border: 2px solid var(--cueva-electric);
+            border: 2px solid var(--oadac-electric);
             background: transparent;
             animation: splashFloat 8s ease-in-out infinite;
         }
@@ -110,15 +110,15 @@
         }
 
         /* Elementos con formas diversas según brandbook */
-        .splash-element:nth-child(2) { top: 25px; left: 25px; width: 15px; height: 15px; animation-delay: -1s; border-color: var(--cueva-electric); }
-        .splash-element:nth-child(3) { top: 25px; left: 110px; width: 15px; height: 15px; animation-delay: -2s; border-color: var(--cueva-coral); }
-        .splash-element:nth-child(4) { top: 50px; left: 50px; width: 18px; height: 18px; animation-delay: -3s; border-color: var(--cueva-sky); }
-        .splash-element:nth-child(5) { top: 75px; left: 75px; width: 21px; height: 10px; animation-delay: -4s; border-color: var(--cueva-amber); }
-        .splash-element:nth-child(6) { top: 100px; left: 25px; width: 10px; height: 10px; animation-delay: -5s; border-color: var(--cueva-electric); }
-        .splash-element:nth-child(7) { top: 100px; left: 110px; width: 15px; height: 15px; animation-delay: -6s; border-color: var(--cueva-coral); }
+        .splash-element:nth-child(2) { top: 25px; left: 25px; width: 15px; height: 15px; animation-delay: -1s; border-color: var(--oadac-electric); }
+        .splash-element:nth-child(3) { top: 25px; left: 110px; width: 15px; height: 15px; animation-delay: -2s; border-color: var(--oadac-coral); }
+        .splash-element:nth-child(4) { top: 50px; left: 50px; width: 18px; height: 18px; animation-delay: -3s; border-color: var(--oadac-sky); }
+        .splash-element:nth-child(5) { top: 75px; left: 75px; width: 21px; height: 10px; animation-delay: -4s; border-color: var(--oadac-amber); }
+        .splash-element:nth-child(6) { top: 100px; left: 25px; width: 10px; height: 10px; animation-delay: -5s; border-color: var(--oadac-electric); }
+        .splash-element:nth-child(7) { top: 100px; left: 110px; width: 15px; height: 15px; animation-delay: -6s; border-color: var(--oadac-coral); }
 
         @keyframes splashMorph {
-            0%, 100% { 
+            0, 100% { 
                 border-radius: 50%; 
                 transform: scale(1);
                 border-color: var(--white);
@@ -126,34 +126,34 @@
             25% { 
                 border-radius: 30% 70% 40% 60%; 
                 transform: scale(1.1);
-                border-color: var(--cueva-electric);
+                border-color: var(--oadac-electric);
             }
             50% { 
                 border-radius: 60% 40% 70% 30%; 
                 transform: scale(0.95);
-                border-color: var(--cueva-coral);
+                border-color: var(--oadac-coral);
             }
             75% { 
                 border-radius: 40% 60% 30% 70%; 
                 transform: scale(1.05);
-                border-color: var(--cueva-sky);
+                border-color: var(--oadac-sky);
             }
         }
 
         @keyframes splashFloat {
-            0%, 100% { 
+            0, 100 { 
                 transform: translate(0, 0) scale(1); 
                 opacity: 1;
             }
-            25% { 
+            25 { 
                 transform: translate(8px, -12px) scale(1.3); 
                 opacity: 0.8;
             }
-            50% { 
+            50 { 
                 transform: translate(-12px, 8px) scale(0.7); 
                 opacity: 0.6;
             }
-            75% { 
+            75 { 
                 transform: translate(4px, 4px) scale(1.1); 
                 opacity: 0.9;
             }
@@ -171,7 +171,7 @@
         .splash-subtitle {
             font-size: 1.5rem;
             font-weight: 600;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
             margin-bottom: 0.5rem;
         }
 
@@ -193,14 +193,14 @@
 
         .splash-progress-bar {
             height: 100%;
-            background: var(--cueva-electric);
+            background: var(--oadac-electric);
             border-radius: 2px;
             animation: loadProgress 3s ease-out forwards;
         }
 
         @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+            0 { width: 0; }
+            100 { width: 100; }
         }
 
         /* Logo Animado Brandbook Header */
@@ -214,8 +214,8 @@
         .logo-circle {
             width: 60px;
             height: 60px;
-            border: 3px solid var(--cueva-navy);
-            border-radius: 50%;
+            border: 3px solid var(--oadac-navy);
+            border-radius: 50;
             position: absolute;
             animation: logoMorph 8s ease-in-out infinite;
             transition: all 0.3s ease;
@@ -227,74 +227,74 @@
 
         .logo-element {
             position: absolute;
-            border: 2px solid var(--cueva-electric);
+            border: 2px solid var(--oadac-electric);
             background: transparent;
             animation: logoFloat 10s ease-in-out infinite;
         }
 
         .logo-hex {
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            clip-path: polygon(25 0, 75 0, 100 50, 75 100, 25 100, 0 50);
         }
 
         /* Elementos diversos según brandbook: hexágonos, cuadrados (3x3), rectángulos (3x1.5), cuadrados pequeños (1.5x1.5) */
-        .logo-element:nth-child(2) { top: 12px; left: 12px; width: 9px; height: 9px; animation-delay: -1s; border-color: var(--cueva-electric); }
-        .logo-element:nth-child(3) { top: 12px; left: 39px; width: 9px; height: 9px; animation-delay: -2s; border-color: var(--cueva-coral); }
-        .logo-element:nth-child(4) { top: 25px; left: 25px; width: 12px; height: 12px; animation-delay: -3s; border-color: var(--cueva-sky); }
-        .logo-element:nth-child(5) { top: 35px; left: 35px; width: 15px; height: 7px; animation-delay: -4s; border-color: var(--cueva-amber); }
-        .logo-element:nth-child(6) { top: 42px; left: 12px; width: 6px; height: 6px; animation-delay: -5s; border-color: var(--cueva-electric); }
-        .logo-element:nth-child(7) { top: 42px; left: 39px; width: 9px; height: 9px; animation-delay: -6s; border-color: var(--cueva-coral); }
+        .logo-element:nth-child(2) { top: 12px; left: 12px; width: 9px; height: 9px; animation-delay: -1s; border-color: var(--oadac-electric); }
+        .logo-element:nth-child(3) { top: 12px; left: 39px; width: 9px; height: 9px; animation-delay: -2s; border-color: var(--oadac-coral); }
+        .logo-element:nth-child(4) { top: 25px; left: 25px; width: 12px; height: 12px; animation-delay: -3s; border-color: var(--oadac-sky); }
+        .logo-element:nth-child(5) { top: 35px; left: 35px; width: 15px; height: 7px; animation-delay: -4s; border-color: var(--oadac-amber); }
+        .logo-element:nth-child(6) { top: 42px; left: 12px; width: 6px; height: 6px; animation-delay: -5s; border-color: var(--oadac-electric); }
+        .logo-element:nth-child(7) { top: 42px; left: 39px; width: 9px; height: 9px; animation-delay: -6s; border-color: var(--oadac-coral); }
 
         @keyframes logoMorph {
-            0%, 100% { 
-                border-radius: 50%; 
+            0, 100 { 
+                border-radius: 50; 
                 transform: scale(1);
-                border-color: var(--cueva-navy);
+                border-color: var(--oadac-navy);
             }
-            16% { 
-                border-radius: 30% 70% 40% 60%; 
+            16 { 
+                border-radius: 30 70 40 60; 
                 transform: scale(1.05);
-                border-color: var(--cueva-electric);
+                border-color: var(--oadac-electric);
             }
-            33% { 
-                border-radius: 60% 40% 70% 30%; 
+            33 { 
+                border-radius: 60 40 70 30; 
                 transform: scale(0.95);
-                border-color: var(--cueva-coral);
+                border-color: var(--oadac-coral);
             }
-            50% { 
-                border-radius: 40% 60% 30% 70%; 
+            50 { 
+                border-radius: 40 60 30 70; 
                 transform: scale(1.1);
-                border-color: var(--cueva-sky);
+                border-color: var(--oadac-sky);
             }
-            66% { 
-                border-radius: 70% 30% 60% 40%; 
+            66 { 
+                border-radius: 70 30 60 40; 
                 transform: scale(0.9);
-                border-color: var(--cueva-amber);
+                border-color: var(--oadac-amber);
             }
-            83% { 
-                border-radius: 50% 50% 50% 50%; 
+            83 { 
+                border-radius: 50 50 50 50; 
                 transform: scale(1.03);
-                border-color: var(--cueva-electric);
+                border-color: var(--oadac-electric);
             }
         }
 
         @keyframes logoFloat {
-            0%, 100% { 
+            0, 100 { 
                 transform: translate(0, 0) scale(1); 
                 opacity: 1;
             }
-            20% { 
+            20 { 
                 transform: translate(3px, -5px) scale(1.2); 
                 opacity: 0.8;
             }
-            40% { 
+            40 { 
                 transform: translate(-5px, 3px) scale(0.8); 
                 opacity: 0.6;
             }
-            60% { 
+            60 { 
                 transform: translate(2px, 2px) scale(1.1); 
                 opacity: 0.9;
             }
-            80% { 
+            80 { 
                 transform: translate(-2px, -3px) scale(0.9); 
                 opacity: 0.7;
             }
@@ -327,7 +327,7 @@
         .logo-text h1 {
             font-size: 1.5rem;
             font-weight: 900;
-            color: var(--cueva-navy);
+            color: var(--oadac-navy);
             margin: 0;
             letter-spacing: -0.02em;
         }
@@ -350,7 +350,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: var(--cueva-electric);
+            background: var(--oadac-electric);
             color: var(--white);
             border: none;
             border-radius: 8px;
@@ -361,7 +361,7 @@
         }
 
         .btn-primary:hover {
-            background: var(--cueva-sky);
+            background: var(--oadac-sky);
             transform: translateY(-1px);
         }
 
@@ -414,10 +414,115 @@
         }
 
         .nav-item.active {
-            color: var(--cueva-electric);
-            border-bottom-color: var(--cueva-electric);
+            color: var(--oadac-electric);
+            border-bottom-color: var(--oadac-electric);
         }
 
+        
+        /* TARJETA COT & PARTNERS DESTACADA */
+        .cot-partners-hero {
+            background: linear-gradient(135deg, var(--oadac-slate) 0, var(--oadac-steel) 100);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cot-partners-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(46, 74, 92, 0.92), 
+                rgba(61, 90, 108, 0.92));
+            z-index: 1;
+        }
+
+        .cot-partners-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .cot-partners-info h2 {
+            font-size: 2.25rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .cot-partners-info .subtitle {
+            font-size: 1.25rem;
+            color: var(--oadac-electric);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .cot-partners-info p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .cot-partners-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            background: var(--oadac-electric);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .cot-partners-link:hover {
+            background: var(--white);
+            color: var(--oadac-slate);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .cot-partners-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .cot-stat {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .cot-stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--oadac-electric);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .cot-stat-label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        
         .main-container {
             max-width: 1280px;
             margin: 0 auto;
@@ -459,7 +564,7 @@
 
         .info-item input:focus {
             outline: none;
-            border-color: var(--cueva-electric);
+            border-color: var(--oadac-electric);
             box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
         }
 
@@ -475,7 +580,7 @@
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             padding: 1.5rem;
-            border-left: 4px solid var(--cueva-electric);
+            border-left: 4px solid var(--oadac-electric);
         }
 
         .summary-card-content {
@@ -514,7 +619,7 @@
         }
 
         .icon-blue { background: #DBEAFE; color: #2563EB; }
-        .icon-teal { background: rgba(0, 212, 170, 0.1); color: var(--cueva-electric); }
+        .icon-teal { background: rgba(0, 212, 170, 0.1); color: var(--oadac-electric); }
         .icon-green { background: #D1F7C4; color: #16A34A; }
         .icon-orange { background: #FEF3C7; color: #F59E0B; }
 
@@ -527,7 +632,7 @@
         }
 
         .chapter-header {
-            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
             color: var(--white);
             padding: 1.5rem;
             display: flex;
@@ -543,7 +648,7 @@
 
         .chapter-total .label {
             font-size: 0.875rem;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
             opacity: 0.9;
         }
 
@@ -558,7 +663,7 @@
         }
 
         table {
-            width: 100%;
+            width: 100;
             border-collapse: collapse;
         }
 
@@ -595,7 +700,7 @@
 
         .partida-codigo {
             font-weight: 700;
-            color: var(--cueva-navy);
+            color: var(--oadac-navy);
             min-width: 90px;
             font-family: var(--font-mono);
         }
@@ -636,13 +741,13 @@
 
         .input-cantidad:focus, .input-precio:focus {
             outline: none;
-            border-color: var(--cueva-electric);
+            border-color: var(--oadac-electric);
             box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
             transform: scale(1.02);
         }
 
         .input-cantidad:hover, .input-precio:hover {
-            border-color: var(--cueva-sky);
+            border-color: var(--oadac-sky);
         }
 
         .currency-symbol {
@@ -654,12 +759,12 @@
         .unit-label {
             font-size: 0.875rem;
             font-weight: 600;
-            color: var(--cueva-navy);
+            color: var(--oadac-navy);
         }
 
         .partida-total {
             font-weight: 700;
-            color: var(--cueva-navy);
+            color: var(--oadac-navy);
             font-size: 0.95rem;
             padding: 0.5rem;
             background: rgba(0, 212, 170, 0.05);
@@ -678,7 +783,7 @@
 
         /* Hero Section para Menorca */
         .hero-card {
-            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             padding: 2rem;
@@ -734,7 +839,7 @@
 
         .hero-subtitle {
             font-size: 1.25rem;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
             margin-bottom: 1.5rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             font-weight: 600;
@@ -753,7 +858,7 @@
         .stat-number {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
             display: block;
         }
 
@@ -769,8 +874,8 @@
         .hero-icon-circle {
             width: 120px;
             height: 120px;
-            background: var(--cueva-electric);
-            border-radius: 50%;
+            background: var(--oadac-electric);
+            border-radius: 50;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -782,9 +887,10 @@
         /* Instagram-style gallery */
         .instagram-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
             margin-bottom: 1.5rem;
+            align-items: start;
         }
 
         .gallery-item {
@@ -794,6 +900,10 @@
             box-shadow: var(--shadow-lg);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            background: var(--gray-900);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item:hover {
@@ -804,24 +914,38 @@
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
+            display: block;
+            background: var(--gray-900);
         }
 
         .gallery-item-large {
             grid-row: span 2;
+            min-height: 450px;
+            max-height: 500px;
         }
 
         .gallery-item-large img {
-            height: 400px;
+            height: 100%;
+        }
+
+        .gallery-item-medium {
+            min-height: 300px;
+            max-height: 350px;
         }
 
         .gallery-item-medium img {
-            height: 250px;
+            height: 100%;
+        }
+
+        .gallery-item-small {
+            min-height: 250px;
+            max-height: 280px;
         }
 
         .gallery-item-small img {
-            height: 200px;
+            height: 100%;
         }
 
         .gallery-overlay {
@@ -867,7 +991,7 @@
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             padding: 1.5rem;
-            border-left: 4px solid var(--cueva-electric);
+            border-left: 4px solid var(--oadac-electric);
         }
 
         .impact-card-header {
@@ -880,7 +1004,14 @@
         .impact-icon {
             width: 32px;
             height: 32px;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
         .impact-value {
@@ -891,7 +1022,7 @@
             font-size: 1.875rem;
             font-weight: 700;
             margin: 0;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
         }
 
         .impact-value .unit {
@@ -920,8 +1051,8 @@
         }
 
         .progress-fill {
-            height: 100%;
-            background: var(--cueva-electric);
+            height: 100;
+            background: var(--oadac-electric);
             border-radius: 4px;
             transition: width 1s ease;
         }
@@ -936,7 +1067,7 @@
         }
 
         .conditions-header {
-            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
             color: var(--white);
             padding: 1.5rem;
             display: flex;
@@ -966,7 +1097,7 @@
         }
 
         .condition-tab.active {
-            background: var(--cueva-electric);
+            background: var(--oadac-electric);
         }
 
         .condition-content {
@@ -985,7 +1116,7 @@
         .condition-group h4 {
             font-size: 1.125rem;
             font-weight: 700;
-            color: var(--cueva-coral);
+            color: var(--oadac-coral);
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -1010,13 +1141,13 @@
 
         .condition-number {
             font-weight: 700;
-            color: var(--cueva-navy);
+            color: var(--oadac-navy);
             margin-right: 0.5rem;
         }
 
         /* Documentación */
         .downloads-hero {
-            background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800));
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
             border-radius: 12px;
             box-shadow: var(--shadow-lg);
             padding: 1.5rem;
@@ -1043,7 +1174,7 @@
         .download-stat .number {
             font-size: 1.875rem;
             font-weight: 700;
-            color: var(--cueva-electric);
+            color: var(--oadac-electric);
             display: block;
         }
 
@@ -1103,7 +1234,7 @@
 
         .btn-download {
             padding: 0.5rem 1rem;
-            background: var(--cueva-electric);
+            background: var(--oadac-electric);
             color: var(--white);
             border: none;
             border-radius: 6px;
@@ -1114,14 +1245,14 @@
         }
 
         .btn-download:hover {
-            background: var(--cueva-sky);
+            background: var(--oadac-sky);
         }
 
         .notification {
             position: fixed;
             top: 1rem;
             right: 1rem;
-            background: var(--cueva-electric);
+            background: var(--oadac-electric);
             color: var(--white);
             padding: 1rem 1.5rem;
             border-radius: 8px;
@@ -1139,10 +1270,10 @@
         }
 
         .hidden { display: none !important; }
-        .text-teal { color: var(--cueva-electric); }
-        .text-orange { color: var(--cueva-coral); }
+        .text-teal { color: var(--oadac-electric); }
+        .text-orange { color: var(--oadac-coral); }
         .text-green { color: #16A34A; }
-        .text-blue { color: var(--cueva-sky); }
+        .text-blue { color: var(--oadac-sky); }
         .text-purple { color: #7C3AED; }
 
         @media (max-width: 768px) {
@@ -1187,26 +1318,55 @@
                 grid-template-columns: 1fr;
             }
 
+            
+            .cot-partners-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .cot-partners-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cot-partners-info h2 {
+                font-size: 1.75rem;
+            }
+
             .input-cantidad, .input-precio {
                 width: 90px;
                 font-size: 0.8rem;
             }
 
             .instagram-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 0.5rem;
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .gallery-item-large {
+                min-height: 350px;
+                max-height: 400px;
             }
 
             .gallery-item-large img {
-                height: 300px;
+                height: 100%;
+            }
+
+            .gallery-item-medium {
+                min-height: 250px;
+                max-height: 300px;
             }
 
             .gallery-item-medium img {
-                height: 200px;
+                height: 100%;
+            }
+
+            .gallery-item-small {
+                min-height: 200px;
+                max-height: 250px;
             }
 
             .gallery-item-small img {
-                height: 150px;
+                height: 100%;
             }
         }
     </style>
@@ -1224,7 +1384,7 @@
                 <div class="splash-element"></div>
                 <div class="splash-element splash-hex"></div>
             </div>
-            <h1 class="splash-title">CUEVA</h1>
+            <h1 class="splash-title">OADAC</h1>
             <p class="splash-subtitle">Sistema Universal de Construcción</p>
             <p class="splash-tagline">Son Parc, Menorca - 10 Viviendas Unifamiliares para Cot & Partners</p>
             <div class="splash-progress">
@@ -1246,7 +1406,7 @@
                     <div class="logo-element logo-hex"></div>
                 </div>
                 <div class="logo-text">
-                    <h1>CUEVA</h1>
+                    <h1>OADAC</h1>
                     <p>Presupuesto Interactivo - Son Parc Menorca</p>
                 </div>
             </div>
@@ -1275,7 +1435,7 @@
             </a>
             <a href="#" class="nav-item" data-tab="propuesta">
                 <i class="fas fa-bolt"></i>
-                Propuesta CUEVA
+                Propuesta Sistema EDRO
             </a>
             <a href="#" class="nav-item" data-tab="colaboracion">
                 <i class="fas fa-handshake"></i>
@@ -1297,6 +1457,39 @@
     </nav>
 
     <div class="main-container">
+                <!-- TARJETA COT & PARTNERS DESTACADA -->
+        <div class="cot-partners-hero">
+            <div class="cot-partners-content">
+                <div class="cot-partners-info">
+                    <h2>COT & Partners</h2>
+                    <div class="subtitle">Promotora del Proyecto Son Parc</div>
+                    <p>Proyecto de 10 viviendas unifamiliares en Son Parc, Menorca, utilizando el Sistema EDRO de construcción industrializada,tecnológica y sostenible. Una propuesta que combina diseño, eficiencia y respeto por el entorno mediterráneo.</p>
+                    <a href="https://www.cotandpartners.com/" target="_blank" class="cot-partners-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visitar Web COT & Partners
+                    </a>
+                </div>
+                <div class="cot-partners-stats">
+                    <div class="cot-stat">
+                        <span class="cot-stat-number">10</span>
+                        <span class="cot-stat-label">Viviendas</span>
+                    </div>
+                    <div class="cot-stat">
+                        <span class="cot-stat-number">866 m²</span>
+                        <span class="cot-stat-label">Por Unidad</span>
+                    </div>
+                    <div class="cot-stat">
+                        <span class="cot-stat-number">4-5</span>
+                        <span class="cot-stat-label">Meses</span>
+                    </div>
+                    <div class="cot-stat">
+                        <span class="cot-stat-number">Mayor</span>
+                        <span class="cot-stat-label">Eficiencia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="project-info">
             <div class="info-item">
                 <h3>Cliente</h3>
@@ -1326,7 +1519,7 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Total por Unidad</h4>
-                            <p class="amount text-blue" id="totalUnidad">174.492,10 €</p>
+                            <p class="amount text-blue" id="totalUnidad">174.494,10 €</p>
                         </div>
                         <div class="summary-icon icon-blue">
                             <i class="fas fa-euro-sign"></i>
@@ -1338,7 +1531,7 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Total Proyecto</h4>
-                            <p class="amount text-teal" id="totalProyecto">1.744.921,00 €</p>
+                            <p class="amount text-teal" id="totalProyecto">1.744.941,00 €</p>
                         </div>
                         <div class="summary-icon icon-teal">
                             <i class="fas fa-building"></i>
@@ -1378,7 +1571,7 @@
                     <h3 class="chapter-title">04 - ESTRUCTURA Y ELEMENTOS PREFABRICADOS</h3>
                     <div class="chapter-total">
                         <div class="label">Subtotal</div>
-                        <div class="amount" id="subtotal-04">64.443,60 €</div>
+                        <div class="amount" id="subtotal-04">64.445,39 €</div>
                     </div>
                 </div>
                 
@@ -1399,11 +1592,76 @@
                                 <td class="partida-codigo">04.02</td>
                                 <td>
                                     <div class="partida-desc">FORJADO REUTILIZABLE UNIDIRECCIONAL MIXTO DE HORMIGÓN ARMADO</div>
-                                    <div class="partida-comment">Forjado unidireccional prefabricado y reutilizable de 30 cm de canto, realizado con una capa de placas EDRO aligerada de hormigón armado de 30 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm) unidas entre sí mediante placas de unión hembra S355 en perfil plano de medidas estándar (400x400mm, 400x200mm, 200x200mm) y espesor 10 mm colocadas en ambas caras de la placa EDRO y conectadas mediante placa de unión hembra en cara superior de placa EDRO y placa de unión macho de acero S355 soldada, con pernos pasantes de alta resistencia de 24mm de mm de diámetro y 320mm de longitud total, atornillados con arandela, tuerca y par de apriete controlado de 800N, apoyada directamente sobre pilares o muros de carga. El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero incluye las vigas y los pilares.</div>
+                                    <div class="partida-comment">Forjado unidireccional prefabricado y reutilizable de 30 cm de canto, realizado con una capa de placas EDRO aligerada de hormigón armado de 30 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm) unidas entre sí mediante placas de unión hembra S355 en perfil plano de medidas estándar (400x400mm, 400x200mm, 200x200mm) y espesor 10 mm colocadas en ambas caras de la placa EDRO y conectadas mediante placa de unión hembra en cara superior de placa EDRO y placa de unión macho de acero S355 soldada, con pernos pasantes de alta resistencia de 24mm de mm de diámetro y 320mm de longitud total, atornillados con arandela, tuerca y par de apriete controlado de 800N, apoyada directamente sobre pilares o muros de carga. El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero incluye las vigas y los pilares.                                    <div class="partida-mediciones" style="margin-top: 1rem; padding: 1rem; background: var(--gray-50); border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem;">
+                                        <h5 style="font-weight: 600; color: var(--oadac-slate); margin-bottom: 0.75rem;">Mediciones Detalladas:</h5>
+                                        <table style="width: 100%; border-collapse: collapse;">
+                                            <thead>
+                                                <tr style="border-bottom: 1px solid var(--gray-300);">
+                                                    <th style="text-align: left; padding: 0.5rem; font-size: 0.75rem;">Descripción</th>
+                                                    <th style="text-align: center; padding: 0.5rem; font-size: 0.75rem;">Longitud</th>
+                                                    <th style="text-align: center; padding: 0.5rem; font-size: 0.75rem;">Anchura</th>
+                                                    <th style="text-align: center; padding: 0.5rem; font-size: 0.75rem;">Parcial</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="color: var(--gray-700);">
+                                                <tr>
+                                                    <td colspan="4" style="padding: 0.5rem; font-weight: 600; background: var(--gray-100);">Planta Baja</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">4,34</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">6,80</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">29,512</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">1,40</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">2,38</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">3,332</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">10,26</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">4,34</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">44,5284</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">20,80</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">6,62</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">137,696</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">4,36</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">2,40</td>
+                                                    <td style="text-align: center; padding: 0.5rem; font-weight: 600;">10,464</td>
+                                                </tr>
+                                                <tr style="background: var(--gray-100); font-weight: 600;">
+                                                    <td style="padding: 0.5rem;" colspan="3">Subtotal Planta Baja</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">225,5324</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4" style="padding: 0.5rem; font-weight: 600; background: var(--gray-100); padding-top: 1rem;">Planta Primera</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 0.5rem;"></td>
+                                                    <td style="text-align: center; padding: 0.5rem;">16,82</td>
+                                                    <td style="text-align: center; padding: 0.5rem;">6,24</td>
+                                                    <td style="text-align: center; padding: 0.5rem; font-weight: 600;">104,9568</td>
+                                                </tr>
+                                                <tr style="background: var(--oadac-electric); color: white; font-weight: 700;">
+                                                    <td style="padding: 0.75rem;" colspan="3">TOTAL</td>
+                                                    <td style="text-align: center; padding: 0.75rem;">330,49 m²</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+</div>
                                 </td>
                                 <td class="text-center">
                                     <div class="input-container">
-                                        <input type="number" class="input-cantidad" value="330.48" step="0.01" data-row="0" data-chapter="04">
+                                        <input type="number" class="input-cantidad" value="330.49" step="0.01" data-row="0" data-chapter="04">
                                     </div>
                                 </td>
                                 <td class="text-center"><span class="unit-label">m²</span></td>
@@ -1413,7 +1671,7 @@
                                         <span class="currency-symbol">€</span>
                                     </div>
                                 </td>
-                                <td class="text-right partida-total" data-total="0">64.443,60 €</td>
+                                <td class="text-right partida-total" data-total="0">64.445,39 €</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1425,7 +1683,7 @@
                     <h3 class="chapter-title">07 - CERRAMIENTOS Y DIVISIONES</h3>
                     <div class="chapter-total">
                         <div class="label">Subtotal</div>
-                        <div class="amount" id="subtotal-07">110.048,50 €</div>
+                        <div class="amount" id="subtotal-07">110.048,71 €</div>
                     </div>
                 </div>
                 
@@ -1447,6 +1705,285 @@
                                 <td>
                                     <div class="partida-desc">FACHADA REUTILIZABLE UNIDIRECCIONAL HORMIGÓN GRIS</div>
                                     <div class="partida-comment">Fachada unidireccional prefabricada y reutilizable de 16 cm de canto, realizada con una capa de placas EDRO macizas de hormigón armado de 16 cm de canto y dimensiones estándar o derivadas de la estándar (600x300cm, 300x300cm, 300x150cm, 150x150cm) unidas entre sí mediante placas de unión hembra S355 en perfil vertical de medidas estándar (400x400mm, 400x200mm, 200x200mm) y espesor 10 mm colocadas en una cara de la placa EDRO y conectadas a la cara superior de placa EDRO y distribuidas cada 3 metros, con pernos de alta resistencia de 24mm de mm de diámetro y 280mm de longitud total, atornillados con arandela, tuerca y par de apriete controlado de 800N, con luces hasta 6 m y altura libre de planta de hasta 3 m, apoyada directamente.Terminación rugosa tipo Enfoscado en GRIS. El precio incluye el conformado de elementos en taller industrial con medidas estándar o especiales y el montaje en el lugar definitivo de su colocación en obra.</div>
+                                    <div class="partida-mediciones">
+                                        <h5>Mediciones Detalladas:</h5>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Descripción</th>
+                                                    <th class="text-center">Longitud</th>
+                                                    <th class="text-center">Altura</th>
+                                                    <th class="text-center">Parcial</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="subtotal-row">
+                                                    <td colspan="4"><strong>Planta Baja</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">7,1</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">5,325</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">1,575</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,0</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">1,5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">1,575</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">10,80</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">8,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,24</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">3,18</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,53</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">3,3975</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">26,06</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">19,545</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">5,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">22,81</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">17,1075</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">0,75</td>
+                                                    <td class="text-center">5,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">7,1</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">17,04</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">5,04</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,0</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">4,8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">5,04</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">10,80</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">25,92</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,24</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">10,176</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,53</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">10,872</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">26,06</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">62,544</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">16,32</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">22,81</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">54,744</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">16,32</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">7,1</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">7,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">2,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,0</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">2,0</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">2,1</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">2,1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">10,80</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">10,8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,24</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">4,24</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">4,53</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">4,53</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">26,06</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">26,06</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">6,8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">22,81</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">22,81</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,8</td>
+                                                    <td class="text-center">1,0</td>
+                                                    <td class="text-center">6,8</td>
+                                                </tr>
+                                                <tr class="subtotal-row">
+                                                    <td colspan="3"><strong>Subtotal Planta Baja</strong></td>
+                                                    <td class="text-center"><strong>395,661</strong></td>
+                                                </tr>
+                                                <tr class="subtotal-row">
+                                                    <td colspan="4"><strong>Planta Primera</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">17,1</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">41,04</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">17,1</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">41,04</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,24</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">14,976</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,24</td>
+                                                    <td class="text-center">2,4</td>
+                                                    <td class="text-center">14,976</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">17,1</td>
+                                                    <td class="text-center">0,6</td>
+                                                    <td class="text-center">10,26</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">17,1</td>
+                                                    <td class="text-center">0,6</td>
+                                                    <td class="text-center">10,26</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,24</td>
+                                                    <td class="text-center">0,6</td>
+                                                    <td class="text-center">3,744</td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="text-center">6,24</td>
+                                                    <td class="text-center">0,6</td>
+                                                    <td class="text-center">3,744</td>
+                                                </tr>
+                                                <tr class="subtotal-row">
+                                                    <td colspan="3"><strong>Subtotal Planta Primera</strong></td>
+                                                    <td class="text-center"><strong>140,04</strong></td>
+                                                </tr>
+                                                <tr class="total-row">
+                                                    <td colspan="3"><strong>TOTAL</strong></td>
+                                                    <td class="text-center"><strong>535,70 m²</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </td>
                                 <td class="text-center">
                                     <div class="input-container">
@@ -1460,7 +1997,7 @@
                                         <span class="currency-symbol">€</span>
                                     </div>
                                 </td>
-                                <td class="text-right partida-total" data-total="0">109.818,50 €</td>
+                                <td class="text-right partida-total" data-total="0">109.818,71 €</td>
                             </tr>
                             <tr>
                                 <td class="partida-codigo">04.01</td>
@@ -1518,11 +2055,11 @@
                             <p class="hero-subtitle">Análisis Comparativo para Menorca</p>
                             <div class="stats-grid">
                                 <div class="stat-item">
-                                    <span class="stat-number">70%</span>
+                                    <span class="stat-number">70</span>
                                     <span class="stat-label">Más Rápido</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-number">95%</span>
+                                    <span class="stat-number">95</span>
                                     <span class="stat-label">Reutilizable</span>
                                 </div>
                                 <div class="stat-item">
@@ -1551,9 +2088,9 @@
                         </div>
                     </div>
                     <h4 class="impact-title">Tiempo de Construcción</h4>
-                    <p class="impact-desc">CUEVA: 4-5 meses vs Tradicional: 18-24 meses</p>
+                    <p class="impact-desc">Sistema EDRO: 4-5 meses vs Tradicional: 18-24 meses</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 80%"></div>
+                        <div class="progress-fill" style="width: 80"></div>
                     </div>
                 </div>
 
@@ -1561,14 +2098,14 @@
                     <div class="impact-card-header">
                         <i class="fas fa-euro-sign impact-icon text-green"></i>
                         <div class="impact-value">
-                            <p class="number">350.000</p>
+                            <p class="number">150.000</p>
                             <p class="unit">€ ahorro total</p>
                         </div>
                     </div>
                     <h4 class="impact-title">Ahorro Económico Directo</h4>
                     <p class="impact-desc">Reducción costos construcción + financiación</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%"></div>
+                        <div class="progress-fill" style="width: 75"></div>
                     </div>
                 </div>
 
@@ -1577,13 +2114,13 @@
                         <i class="fas fa-ship impact-icon text-blue"></i>
                         <div class="impact-value">
                             <p class="number">60</p>
-                            <p class="unit">% menos viajes</p>
+                            <p class="unit"> menos viajes</p>
                         </div>
                     </div>
                     <h4 class="impact-title">Logística Insular Optimizada</h4>
-                    <p class="impact-desc">Prefabricación en península, montaje eficiente</p>
+                    <p class="impact-desc">Prefabricación en isla, montaje eficiente</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 60%"></div>
+                        <div class="progress-fill" style="width: 60"></div>
                     </div>
                 </div>
 
@@ -1592,60 +2129,60 @@
                         <i class="fas fa-recycle impact-icon text-teal"></i>
                         <div class="impact-value">
                             <p class="number">95</p>
-                            <p class="unit">% reutilizable</p>
+                            <p class="unit"> reutilizable</p>
                         </div>
                     </div>
                     <h4 class="impact-title">Economía Circular Completa</h4>
                     <p class="impact-desc">Componentes desmontables y reutilizables</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 95%"></div>
+                        <div class="progress-fill" style="width: 95"></div>
                     </div>
                 </div>
             </div>
 
             <div class="chapter-card">
                 <div class="chapter-header">
-                    <h3 class="chapter-title">Ventajas Exclusivas Sistema CUEVA</h3>
+                    <h3 class="chapter-title">Ventajas Exclusivas Sistema EDRO</h3>
                 </div>
                 <div style="padding: 1.5rem;">
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                        <div style="background: rgba(0, 212, 170, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--cueva-electric);">
-                            <h4 style="color: var(--cueva-electric); margin-bottom: 0.75rem;"><i class="fas fa-brain" style="margin-right: 0.5rem;"></i>Gemelos Digitales Sincronizados</h4>
-                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Monitorización continua de componentes, fabricación, montaje y rendimiento energético en tiempo real.</p>
+                        <div style="background: rgba(0, 212, 170, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--oadac-electric);">
+                            <h4 style="color: var(--oadac-electric); margin-bottom: 0.75rem;"><i class="fas fa-brain" style="margin-right: 0.5rem;"></i>Gemelos Digitales Sincronizados</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Monitorización continua de componentes, fabricación, montaje y rendimiento en tiempo real.</p>
                             <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Control calidad automatizado 24/7</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Gestión inteligente del sistema</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Pasaporte Digital de Producto (DPP)</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Control calidad automatizado 24/7</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Gestión inteligente del sistema</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Pasaporte Digital de Producto (DPP)</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--cueva-amber);">
-                            <h4 style="color: var(--cueva-amber); margin-bottom: 0.75rem;"><i class="fas fa-industry" style="margin-right: 0.5rem;"></i>Industrialización 4.0 Avanzada</h4>
-                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Integración completa de robótica, digitalización y automatización constructiva.</p>
+                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--oadac-amber);">
+                            <h4 style="color: var(--oadac-amber); margin-bottom: 0.75rem;"><i class="fas fa-industry" style="margin-right: 0.5rem;"></i>Industrialización 4.0 Avanzada</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Integración completa, digitalización y automatización constructiva.</p>
                             <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Automatización 100% fases constructivas</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Calidad total verificada</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Eficiencia productiva máxima</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Automatización fases constructivas</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Calidad trazabilizada</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Eficiencia productiva máxima</li>
                             </ul>
                         </div>
                         
                         <div style="background: rgba(34, 197, 94, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #22C55E;">
                             <h4 style="color: #22C55E; margin-bottom: 0.75rem;"><i class="fas fa-seedling" style="margin-right: 0.5rem;"></i>Regeneración Ambiental Activa</h4>
-                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Sistema regenerativo con impacto ambiental positivo medible y certificado.</p>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Sistema regenerativo con impacto ambiental positivo medible.</p>
                             <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Marco Level(s) UE implementado</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Contribución activa regeneración ambiental</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Certificación A+ energética</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Características Marco Level(s) UE</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Contribución activa regeneración ambiental</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Eficiencia energética</li>
                             </ul>
                         </div>
                         
                         <div style="background: rgba(139, 69, 19, 0.05); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #8B4513;">
-                            <h4 style="color: #8B4513; margin-bottom: 0.75rem;"><i class="fas fa-network-wired" style="margin-right: 0.5rem;"></i>Ecosistema Colaborativo Global</h4>
-                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Red CUEVA que conecta proyectos, socios y tecnologías en marketplace global.</p>
+                            <h4 style="color: #8B4513; margin-bottom: 0.75rem;"><i class="fas fa-network-wired" style="margin-right: 0.5rem;"></i>Ecosistema Colaborativo</h4>
+                            <p style="color: var(--gray-700); margin-bottom: 0.5rem;">Red OADAC que conecta proyectos, socios y tecnologías en marketplace.</p>
                             <ul style="list-style: none; padding: 0; color: var(--gray-600); font-size: 0.875rem;">
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Hub global de colaboración</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Intercambio componentes y servicios</li>
-                                <li><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Escalabilidad infinita</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Hub de colaboración</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Intercambio componentes y servicios</li>
+                                <li><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Escalabilidad local y resiliente</li>
                             </ul>
                         </div>
                     </div>
@@ -1656,9 +2193,9 @@
                 <div class="summary-card">
                     <div class="summary-card-content">
                         <div class="summary-text">
-                            <h4>Precisión Matemática</h4>
+                            <h4>Precisión </h4>
                             <p class="amount text-purple">Universal</p>
-                            <p class="subtitle">Proporciones geométricas exactas</p>
+                            <p class="subtitle">Proporciones geométricas</p>
                         </div>
                         <div class="summary-icon" style="background: rgba(139, 69, 19, 0.1); color: #8B4513;">
                             <i class="fas fa-calculator"></i>
@@ -1670,8 +2207,8 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Reducción Residuos</h4>
-                            <p class="amount text-green">100%</p>
-                            <p class="subtitle">Cero residuos construcción</p>
+                            <p class="amount text-green">80</p>
+                            <p class="subtitle">Reducción notable de residuos de construcción</p>
                         </div>
                         <div class="summary-icon icon-green">
                             <i class="fas fa-trash-alt"></i>
@@ -1683,7 +2220,7 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Valor Premium Mercado</h4>
-                            <p class="amount text-teal">+35%</p>
+                            <p class="amount text-teal">+25</p>
                             <p class="subtitle">Revalorización inmediata</p>
                         </div>
                         <div class="summary-icon icon-teal">
@@ -1700,7 +2237,7 @@
                 <div class="hero-card-content">
                     <div class="hero-grid">
                         <div class="hero-content">
-                            <h2>CUEVA en Menorca</h2>
+                            <h2>Sistema EDRO en Menorca</h2>
                             <p class="hero-subtitle">Sistema Universal para el Paraíso Mediterráneo</p>
                             <div class="stats-grid">
                                 <div class="stat-item">
@@ -1708,11 +2245,11 @@
                                     <span class="stat-label">Viviendas Unifamiliares</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-number">95%</span>
+                                    <span class="stat-number">95</span>
                                     <span class="stat-label">Componentes reutilizables</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-number">A++</span>
+                                    <span class="stat-number">Mayor</span>
                                     <span class="stat-label">Eficiencia energética</span>
                                 </div>
                             </div>
@@ -1721,7 +2258,7 @@
                             <div class="hero-icon-circle">
                                 <i class="fas fa-island-tropical"></i>
                             </div>
-                            <p style="font-size: 0.875rem; color: var(--gray-300);">Resistencia marina garantizada</p>
+                            <p style="font-size: 0.875rem; color: var(--gray-300);">Resilencia marina</p>
                         </div>
                     </div>
                 </div>
@@ -1730,20 +2267,20 @@
             <!-- Galería Visual CUEVA tipo Instagram -->
             <div class="chapter-card" style="margin-bottom: 1.5rem;">
                 <div class="chapter-header">
-                    <h3 class="chapter-title">Sistema CUEVA en Acción</h3>
+                    <h3 class="chapter-title">Sistema EDRO</h3>
                 </div>
                 <div style="padding: 1.5rem;">
                     <div class="instagram-gallery">
                         <div class="gallery-item gallery-item-large">
-                            <img src="Public/Fotos/Generales/Imagen3.jpg" alt="Sistema CUEVA - Estructura Finalizada">
+                            <img src="Public/Fotos/Generales/Imagen3.jpg" alt="Sistema EDRO - Estructura Finalizada">
                             <div class="gallery-overlay">
                                 <h4>Estructura Finalizada</h4>
-                                <p>Calidad constructiva excepcional</p>
+                                <p>Calidad constructiva</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Generales/Imagen4.jpg" alt="Sistema CUEVA - Eficiencia Constructiva">
+                            <img src="Public/Fotos/Generales/Imagen4.jpg" alt="Sistema EDRO - Eficiencia Constructiva">
                             <div class="gallery-overlay">
                                 <h4>Eficiencia Constructiva</h4>
                                 <p>4-5 meses vs 18 tradicional</p>
@@ -1751,26 +2288,26 @@
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Generales/Imagen5.jpg" alt="Sistema CUEVA - Precisión Modular">
+                            <img src="Public/Fotos/Generales/Imagen5.jpg" alt="Sistema EDRO - Precisión Modular">
                             <div class="gallery-overlay">
                                 <h4>Precisión Modular</h4>
-                                <p>Calidad industrial garantizada</p>
+                                <p>Calidad industrial</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Generales/Imagen6.jpg" alt="Sistema CUEVA - Sostenibilidad Total">
+                            <img src="Public/Fotos/Generales/Imagen6.jpg" alt="Sistema EDRO - Sostenibilidad Total">
                             <div class="gallery-overlay">
-                                <h4>Sostenibilidad Total</h4>
-                                <p>95% componentes reutilizables</p>
+                                <h4>Sostenibilidad Real</h4>
+                                <p>95 componentes reutilizables</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Generales/Imagen7.jpg" alt="Sistema CUEVA - Resultados Finales">
+                            <img src="Public/Fotos/Generales/Imagen7.jpg" alt="Sistema EDRO - Resultados Finales">
                             <div class="gallery-overlay">
                                 <h4>Resultados Finales</h4>
-                                <p>Excelencia constructiva garantizada</p>
+                                <p>Excelencia constructiva</p>
                             </div>
                         </div>
                     </div>
@@ -1782,7 +2319,7 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Resistencia Marina</h4>
-                            <p class="amount text-blue">50+ años</p>
+                            <p class="amount text-blue">Mayor Resiliencia Material</p>
                             <p class="subtitle">Ambiente salino</p>
                         </div>
                         <div class="summary-icon icon-blue">
@@ -1795,7 +2332,7 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Integración Paisajística</h4>
-                            <p class="amount text-green">100%</p>
+                            <p class="amount text-green">100</p>
                             <p class="subtitle">Respeto al entorno</p>
                         </div>
                         <div class="summary-icon icon-green">
@@ -1808,8 +2345,8 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Eficiencia Logística</h4>
-                            <p class="amount text-orange">-60%</p>
-                            <p class="subtitle">Transporte insular</p>
+                            <p class="amount text-orange">-60</p>
+                            <p class="subtitle">Transporte peninsular</p>
                         </div>
                         <div class="summary-icon icon-orange">
                             <i class="fas fa-ship"></i>
@@ -1821,8 +2358,8 @@
                     <div class="summary-card-content">
                         <div class="summary-text">
                             <h4>Valor de Mercado</h4>
-                            <p class="amount text-teal">+35%</p>
-                            <p class="subtitle">Premium sostenible</p>
+                            <p class="amount text-teal">+25</p>
+                            <p class="subtitle">Premium Sostenible & Tech</p>
                         </div>
                         <div class="summary-icon icon-teal">
                             <i class="fas fa-chart-line"></i>
@@ -1839,49 +2376,49 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
                         <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #2563EB;">
                             <h4 style="color: #2563EB; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-shield-alt"></i>Resistencia Marina Certificada
+                                <i class="fas fa-shield-alt"></i>Resiliencia Marina 
                             </h4>
-                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Hormigón especial con aditivos anti-corrosión para ambiente salino extremo de Menorca.</p>
+                            <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Hormigón testado en la isla y mayores recubrimientos para el ambiente salino extremo de Menorca.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Aceros galvanizados marinos</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Sellados especiales ambientes salinos</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Garantía 50+ años ambiente marino</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Aceros galvanizados </li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Sellados </li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: #2563EB; margin-right: 0.5rem;"></i>Mayor Resistencia y durabilidad en ambiente Marino</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(255, 107, 74, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-coral);">
-                            <h4 style="color: var(--cueva-coral); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="background: rgba(255, 107, 74, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--oadac-coral);">
+                            <h4 style="color: var(--oadac-coral); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                                 <i class="fas fa-ship"></i>Logística Insular Optimizada
                             </h4>
                             <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Solución integral diseñada específicamente para la realidad logística de Menorca.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Prefabricación en península</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Transporte marítimo eficiente</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Coordinación portuaria Mahón</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Prefabricación en la isla</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Transporte de cercanía, eficiente</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Coordinación transporte, elevación ...</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(14, 165, 233, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-sky);">
-                            <h4 style="color: var(--cueva-sky); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="background: rgba(14, 165, 233, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--oadac-sky);">
+                            <h4 style="color: var(--oadac-sky); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                                 <i class="fas fa-leaf"></i>Sostenibilidad Insular
                             </h4>
                             <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Respeto máximo al ecosistema mediterráneo único de Menorca, Reserva de la Biosfera.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Mínimo impacto ambiental</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Integración paisajística total</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Certificación BREEAM insular</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Mínimo impacto ambiental</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Integración paisajística total</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Bullets points Certificaciones sostenibles</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--cueva-amber);">
-                            <h4 style="color: var(--cueva-amber); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--oadac-amber);">
+                            <h4 style="color: var(--oadac-amber); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
                                 <i class="fas fa-chart-line"></i>Valor Premium Turístico
                             </h4>
                             <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Aprovechamiento del potencial turístico de Menorca con propiedades de alto valor.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>ROI acelerado turístico</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Revalorización inmediata +35%</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Mantenimiento prácticamente nulo</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>ROI acelerado turístico</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Revalorización inmediata +25</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Mantenimiento prácticamente nulo</li>
                             </ul>
                         </div>
 
@@ -1891,9 +2428,9 @@
                             </h4>
                             <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Diseño específico para el clima mediterráneo de Menorca con sus vientos y condiciones únicas.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Resistencia vientos de tramontana</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Orientación solar optimizada</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Eficiencia energética A++</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Resistencia vientos de tramontana</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Orientación solar optimizada</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Eficiencia energética </li>
                             </ul>
                         </div>
                         
@@ -1903,9 +2440,9 @@
                             </h4>
                             <p style="color: var(--gray-700); margin-bottom: 1rem; font-size: 0.875rem;">Aprovechamiento de la temporada turística de Menorca con construcción fuera de período alto.</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Construcción otoño-invierno</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Entrega para temporada alta</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>ROI inmediato turístico</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Construcción otoño-invierno</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Entrega para temporada alta</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>ROI inmediato turístico</li>
                             </ul>
                         </div>
                     </div>
@@ -1919,19 +2456,19 @@
                 <div class="hero-card-content">
                     <div class="hero-grid">
                         <div class="hero-content">
-                            <h2>La Historia de Son Parc</h2>
-                            <p class="hero-subtitle">CUEVA + OADAC + Licenciatario Balear = Éxito Multiplicado Exponencialmente</p>
+                            <h2>La Historia de la Colaboración</h2>
+                            <p class="hero-subtitle">OADAC — Sistema EDRO + Licenciatario Balear = Éxito Multiplicado Exponencialmente</p>
                             <div class="stats-grid">
                                 <div class="stat-item">
                                     <span class="stat-number">16</span>
-                                    <span class="stat-label">Viviendas Modulares</span>
+                                    <span class="stat-label">Viviendas Industrializadas</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-number">3.200</span>
+                                    <span class="stat-number">2.900</span>
                                     <span class="stat-label">m² Área Total</span>
                                 </div>
                                 <div class="stat-item">
-                                    <span class="stat-number">100%</span>
+                                    <span class="stat-number">100</span>
                                     <span class="stat-label">Tasa de Éxito</span>
                                 </div>
                             </div>
@@ -1956,7 +2493,7 @@
                         <div class="gallery-item gallery-item-large">
                             <img src="Public/Fotos/Colaboración/DEOF6384.JPG" alt="Equipo CUEVA en reunión estratégica">
                             <div class="gallery-overlay">
-                                <h4>Reunión Estratégica</h4>
+                                <h4>Estratégia</h4>
                                 <p>Planificación colaborativa</p>
                             </div>
                         </div>
@@ -1978,7 +2515,7 @@
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Colaboración/IMG_4315.PNG" alt="Análisis de especificaciones">
+                            <img src="Public/Fotos/Colaboración/IMG_4315.PNG" alt=ÓAnálisis de especificaciones">
                             <div class="gallery-overlay">
                                 <h4>Análisis Especificaciones</h4>
                                 <p>Detalles técnicos</p>
@@ -2006,34 +2543,34 @@
 
             <div class="chapter-card">
                 <div class="chapter-header">
-                    <h3 class="chapter-title">Ecosistema Colaborativo en Acción</h3>
+                    <h3 class="chapter-title">Ecosistema Colaborativo</h3>
                 </div>
                 <div style="padding: 1.5rem;">
                     <p style="color: var(--gray-700); margin-bottom: 2rem; font-size: 1rem; line-height: 1.6;">
-                        El proyecto Son Parc representa la demostración perfecta de cómo la colaboración bajo los sistemas CUEVA multiplica exponencialmente los resultados a través 
+                        El proyecto Son Parc representa la demostración perfecta de cómo la colaboración multiplica exponencialmente los resultados a través 
                         de sinergias tecnológicas, gemelos digitales sincronizados y procesos colaborativos reales.
                     </p>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
                         <div style="background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(14, 165, 233, 0.1)); padding: 2rem; border-radius: 12px; border: 1px solid rgba(0, 212, 170, 0.3);">
-                            <h4 style="color: var(--cueva-electric); margin-bottom: 1rem; font-size: 1.25rem; text-align: center;">
+                            <h4 style="color: var(--oadac-electric); margin-bottom: 1rem; font-size: 1.25rem; text-align: center;">
                                 <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>Resultados de la Colaboración
                             </h4>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
                                 <div style="text-align: center;">
-                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">2024-2025</div>
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--oadac-electric); margin-bottom: 0.5rem;">2025</div>
                                     <div style="color: var(--gray-600); font-size: 0.875rem;">Cronología del Proyecto</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">16</div>
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--oadac-electric); margin-bottom: 0.5rem;">16</div>
                                     <div style="color: var(--gray-600); font-size: 0.875rem;">Viviendas Entregadas</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">100%</div>
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--oadac-electric); margin-bottom: 0.5rem;">100</div>
                                     <div style="color: var(--gray-600); font-size: 0.875rem;">Tasa de Éxito</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 2rem; font-weight: 700; color: var(--cueva-electric); margin-bottom: 0.5rem;">∞</div>
+                                    <div style="font-size: 2rem; font-weight: 700; color: var(--oadac-electric); margin-bottom: 0.5rem;">100</div>
                                     <div style="color: var(--gray-600); font-size: 0.875rem;">Escalabilidad</div>
                                 </div>
                             </div>
@@ -2041,48 +2578,48 @@
                     </div>
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: linear-gradient(135deg, var(--cueva-navy), var(--gray-800)); padding: 2rem; border-radius: 12px; color: var(--white);">
+                        <div style="background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800)); padding: 2rem; border-radius: 12px; color: var(--white);">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="width: 60px; height: 60px; background: var(--cueva-electric); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                                <div style="width: 60px; height: 60px; background: var(--oadac-electric); border-radius: 50; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
                                     <i class="fas fa-cube"></i>
                                 </div>
-                                <h4 style="color: var(--white); margin: 0; font-size: 1.25rem;">CUEVA</h4>
+                                <h4 style="color: var(--white); margin: 0; font-size: 1.25rem;">Sistema EDRO</h4>
                             </div>
                             <p style="color: var(--gray-300); margin-bottom: 1rem; font-size: 0.875rem;">Sistema Universal de Construcción</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Tecnología modular universal</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Gemelos digitales sincronizados</li>
-                                <li style="margin-bottom: 0; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Industrialización 4.0 avanzada</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Tecnología modular</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Gemelos digitales sincronizados</li>
+                                <li style="margin-bottom: 0; color: var(--gray-300); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Industrialización 4.0 avanzada</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(245, 158, 11, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--cueva-amber);">
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--oadac-amber);">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="width: 60px; height: 60px; background: var(--cueva-amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
+                                <div style="width: 60px; height: 60px; background: var(--oadac-amber); border-radius: 50; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
                                     <i class="fas fa-network-wired"></i>
                                 </div>
-                                <h4 style="color: var(--cueva-amber); margin: 0; font-size: 1.25rem;">OADAC</h4>
+                                <h4 style="color: var(--oadac-amber); margin: 0; font-size: 1.25rem;">OADAC</h4>
                             </div>
                             <p style="color: var(--gray-600); margin-bottom: 1rem; font-size: 0.875rem;">Organización Descentralizada de Activos Constructivos</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Red profesional colaborativa</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Tecnologías descentralizadas</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Sistemas modulares integrados</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Red profesional colaborativa</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Tecnologías descentralizadas</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Sistemas integrados</li>
                             </ul>
                         </div>
                         
-                        <div style="background: rgba(255, 107, 74, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--cueva-coral);">
+                        <div style="background: rgba(255, 107, 74, 0.1); padding: 2rem; border-radius: 12px; border: 2px solid var(--oadac-coral);">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                <div style="width: 60px; height: 60px; background: var(--cueva-coral); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
+                                <div style="width: 60px; height: 60px; background: var(--oadac-coral); border-radius: 50; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--white);">
                                     <i class="fas fa-island-tropical"></i>
                                 </div>
-                                <h4 style="color: var(--cueva-coral); margin: 0; font-size: 1.25rem;">Licenciatario Balear</h4>
+                                <h4 style="color: var(--oadac-coral); margin: 0; font-size: 1.25rem;">Licenciatario Balear</h4>
                             </div>
-                            <p style="color: var(--gray-600); margin-bottom: 1rem; font-size: 0.875rem;">Especialista Local en Islas Baleares</p>
+                            <p style="color: var(--gray-600); margin-bottom: 1rem; font-size: 0.875rem;">Especialistas Locales en las Islas Baleares</p>
                             <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Conocimiento insular especializado</li>
-                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Logística marítima optimizada</li>
-                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--cueva-electric); margin-right: 0.5rem;"></i>Red comercial establecida</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Conocimiento insular especializado</li>
+                                <li style="margin-bottom: 0.5rem; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Logística optimizada</li>
+                                <li style="margin-bottom: 0; color: var(--gray-700); font-size: 0.875rem;"><i class="fas fa-check" style="color: var(--oadac-electric); margin-right: 0.5rem;"></i>Red comercial establecida</li>
                             </ul>
                         </div>
                     </div>
@@ -2092,15 +2629,15 @@
                             <i class="fas fa-infinity" style="margin-right: 0.5rem;"></i>Sinergia = Multiplicación Exponencial
                         </h4>
                         <p style="color: var(--gray-700); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.6;">
-                            La combinación de CUEVA + OADAC + Licenciatario Balear crea un ecosistema donde 1+1+1 = ∞
+                            La combinación de OADAC — Sistema EDRO + Licenciatario Balear crea un ecosistema donde 1+1+1 = 100
                         </p>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
                             <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">∞</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">100</div>
                                 <div style="color: var(--gray-700); font-size: 0.875rem;">Escalabilidad</div>
                             </div>
                             <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
-                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">100%</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #A855F7; margin-bottom: 0.5rem;">100</div>
                                 <div style="color: var(--gray-700); font-size: 0.875rem;">Éxito</div>
                             </div>
                             <div style="padding: 1rem; background: rgba(255, 255, 255, 0.5); border-radius: 8px;">
@@ -2186,7 +2723,7 @@
                         <ul class="condition-list">
                             <li><span class="condition-number">I.</span> La vigencia de esta oferta se limita a un mes.</li>
                             <li><span class="condition-number">II.</span> En esta oferta no está incluido el IVA, que se facturará al tipo vigente en cada momento.</li>
-                            <li><span class="condition-number">III.</span> Los precios no contemplan y por tanto serán objeto de revisión global, las subidas extraordinarias de las materias primas, auxiliares, transportes o grúas, entendiendo por subidas extraordinarias aquellas que afectando de manera generalizada al sector superen el 10% en un plazo no superior a 12 meses.</li>
+                            <li><span class="condition-number">III.</span> Los precios no contemplan y por tanto serán objeto de revisión global, las subidas extraordinarias de las materias primas, auxiliares, transportes o grúas, entendiendo por subidas extraordinarias aquellas que afectando de manera generalizada al sector superen el 10 en un plazo no superior a 12 meses.</li>
                             <li><span class="condition-number">IV.</span> Durante el tiempo que dure la obra el cliente ha de disponer en obra suministro de electricidad y agua.</li>
                             <li><span class="condition-number">V.</span> El presupuesto facilitado es orientativo hasta confirmación definitiva de medidas y tipología. Las modificaciones posteriores a la fecha de la presente oferta serán objeto de revisión y nueva valoración.</li>
                             <li><span class="condition-number">VI.</span> Los portes están incluidos en el precio hasta el puerto de Mahón.</li>
@@ -2227,10 +2764,10 @@
                     <div class="condition-group">
                         <h4>Condiciones de Pago</h4>
                         <ul class="condition-list">
-                            <li><span class="condition-number">I.</span> 30% a la firma del presente presupuesto, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">II.</span> 30% al comienzo de la fabricación, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">III.</span> 25% al envío marítimo a Menorca, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">IV.</span> 15% al finalizar el montaje, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">I.</span> 30 a la firma del presente presupuesto, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">II.</span> 30 al comienzo de la fabricación, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">III.</span> 25 al envío marítimo a Menorca, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">IV.</span> 15 al finalizar el montaje, por transferencia bancaria a 7 días fecha factura.</li>
                         </ul>
                     </div>
                 </div>
@@ -2268,7 +2805,7 @@
                 <div class="downloads-stats">
                     <div class="download-stat">
                         <span class="number" id="stat-unidades-docs">10</span>
-                        <span class="label">Viviendas CUEVA</span>
+                        <span class="label">Viviendas Sistema EDRO</span>
                     </div>
                     <div class="download-stat">
                         <span class="number" id="stat-inversion-docs">1.745k€</span>
@@ -2307,9 +2844,9 @@
                             <div class="download-info">
                                 <i class="fas fa-file-alt download-icon" style="color: #00D4AA;"></i>
                                 <div class="download-details">
-                                    <h4>Catálogo Técnico EDRO V10</h4>
+                                    <h4>Catálogo Técnico EDRO</h4>
                                     <p>Sistema universal constructivo detallado</p>
-                                    <p class="meta">Patente ES 2 569 130 B1 • Especificaciones completas</p>
+                                    <p class="meta"> Especificaciones completas</p>
                                 </div>
                             </div>
                             <button class="btn-download" onclick="window.open('Public/pdf/CATALOGO TECNICO EDRO V10.pdf', '_blank')">Descargar</button>
@@ -2319,7 +2856,7 @@
                             <div class="download-info">
                                 <i class="fas fa-cogs download-icon" style="color: #F59E0B;"></i>
                                 <div class="download-details">
-                                    <h4>Manual de Montaje EDRO V19</h4>
+                                    <h4>Manual de Montaje EDRO</h4>
                                     <p>Guía completa de instalación y montaje</p>
                                     <p class="meta">Procedimientos • Herramientas • Seguridad</p>
                                 </div>
@@ -2333,7 +2870,7 @@
                                 <div class="download-details">
                                     <h4>Panel Fachada Hormigón</h4>
                                     <p>Especificaciones técnicas detalladas</p>
-                                    <p class="meta">Resistencia marina • Durabilidad • Instalación</p>
+                                    <p class="meta">Resistencia • Durabilidad • Instalación</p>
                                 </div>
                             </div>
                             <button class="btn-download" onclick="window.open('Public/pdf/Panel-Fachada-Hormigón.pdf', '_blank')">Descargar</button>
@@ -2344,7 +2881,7 @@
                                 <i class="fas fa-industry download-icon" style="color: #7C3AED;"></i>
                                 <div class="download-details">
                                     <h4>Componentes Constructivos Industrializados</h4>
-                                    <p>Catálogo completo EDRO</p>
+                                    <p>Catálogo EDRO</p>
                                     <p class="meta">Sistema modular • Aplicaciones • Ventajas</p>
                                 </div>
                             </div>
@@ -2357,7 +2894,7 @@
                                 <div class="download-details">
                                     <h4>Análisis Comparativo Menorca</h4>
                                     <p>Comparación detallada vs construcción tradicional insular</p>
-                                    <p class="meta">CUEVA vs Tradicional • Ventajas • ROI</p>
+                                    <p class="meta">Sistema EDRO vs Tradicional • Ventajas • ROI</p>
                                 </div>
                             </div>
                             <button class="btn-download" onclick="exportarComparativo()">Generar</button>
@@ -2376,38 +2913,37 @@
                     </div>
                     <div style="padding: 1.5rem;">
                         <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
-                            <div style="width: 48px; height: 48px; background: var(--cueva-electric); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-electric); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
                                 <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Email Corporativo</h4>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">info@cueva.com</p>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">ventas@cueva.com</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="375b425e445a505645545e567752534558444e4443525a441954585a">[email&#160;protected]</a></p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e425b475d43494f5c4d474f6e4b4a5c415d575d5a4b435d004d4143">[email&#160;protected]</a></p>
                                 <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Respuesta en menos de 24h</p>
                             </div>
                         </div>
 
                         <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
-                            <div style="width: 48px; height: 48px; background: var(--cueva-sky); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-sky); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
                                 <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Teléfono Directo</h4>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">+34 900 123 456</p>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">+34 971 123 456 (Baleares)</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">+34 617808692</p>
                                 <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Lun-Vie: 9:00-19:00h</p>
                             </div>
                         </div>
 
                         <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                            <div style="width: 48px; height: 48px; background: var(--cueva-coral); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-coral); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
                                 <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Delegación Baleares</h4>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">C/ Marina, 25</p>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">07703 Mahón, Menorca</p>
-                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Especialista proyectos insulares</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">Ctra de Maó a ,Carrer de Cudatella, Km22</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">07740 Es Mercadal, Menorca</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Proyectos insulares</p>
                             </div>
                         </div>
                     </div>
@@ -2419,16 +2955,16 @@
                     </div>
                     <div style="padding: 1.5rem;">
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Nombre completo" id="contact-name">
-                            <input type="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Email corporativo" id="contact-email">
+                            <input type="text" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder=ÓNombre completo" id="contact-name">
+                            <input type="email" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Email corporativo" id="contact-email">
                         </div>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                            <input type="tel" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Teléfono de contacto" id="contact-phone">
-                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Empresa / Estudio" id="contact-company">
+                            <input type="tel" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Teléfono de contacto" id="contact-phone">
+                            <input type="text" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Empresa / Estudio" id="contact-company">
                         </div>
                         
-                        <select style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem;" id="contact-type">
+                        <select style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem;" id="contact-type">
                             <option value="">Tipo de consulta</option>
                             <option value="presupuesto">Solicitar presupuesto personalizado</option>
                             <option value="visita">Agendar visita técnica Menorca</option>
@@ -2437,9 +2973,9 @@
                             <option value="financiacion">Opciones de financiación</option>
                         </select>
 
-                        <textarea style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; resize: vertical; min-height: 100px; margin-bottom: 1rem;" placeholder="Describe tu proyecto: timeline específico, requisitos ambientales, logística..." rows="4" id="contact-message"></textarea>
+                        <textarea style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; resize: vertical; min-height: 100px; margin-bottom: 1rem;" placeholder="Describe tu proyecto: timeline específico, requisitos ambientales, logística..." rows="4" id="contact-message"></textarea>
 
-                        <button style="width: 100%; padding: 0.75rem 1.5rem; background: var(--cueva-electric); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" onclick="enviarFormulario()">
+                        <button style="width: 100; padding: 0.75rem 1.5rem; background: var(--oadac-electric); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" onclick="enviarFormulario()">
                             <span>Solicitar Información</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -2449,20 +2985,20 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         var presupuestoData = {
             unidades: 10,
             estructura: [
-                { codigo: '04.02', cantidad: 330.48, precio: 195.00, total: 64443.60 }
+                { codigo: '04.02', cantidad: 330.48, precio: 195.00, total: 64445.39 }
             ],
             cerramientos: [
-                { codigo: '07.06', cantidad: 535.70, precio: 205.00, total: 109818.50 },
+                { codigo: '07.06', cantidad: 535.70, precio: 205.00, total: 109818.71 },
                 { codigo: '04.01', cantidad: 1.00, precio: 95.00, total: 95.00 },
                 { codigo: '07.10', cantidad: 1.00, precio: 135.00, total: 135.00 }
             ],
-            subtotalEstructura: 64443.60,
-            subtotalCerramientos: 110048.50,
-            totalUnidad: 174492.10,
+            subtotalEstructura: 64445.39,
+            subtotalCerramientos: 110048.71,
+            totalUnidad: 174494.10,
             superficiePorVivienda: 866.18
         };
 
@@ -2609,9 +3145,9 @@
         }
 
         function descargarPresupuesto() {
-            var contenido = 'CUEVA - PRESUPUESTO SON PARC MENORCA\n' +
+            var contenido = 'OADAC - PRESUPUESTO COT & PARTNERS\n' +
                 '=====================================================\n' +
-                'Sistema Universal de Construcción - Patente ES 2 569 130 B1\n' +
+                'Sistema Universal de Construcción \n' +
                 'Cliente: Cot & Partners\n' +
                 'Proyecto: ' + presupuestoData.unidades + ' Viviendas Unifamiliares - Son Parc, Menorca\n' +
                 'Superficie total: ' + formatNumber(presupuestoData.superficiePorVivienda * presupuestoData.unidades) + ' m²\n' +
@@ -2641,27 +3177,27 @@
                 'CARACTERÍSTICAS ESPECÍFICAS MENORCA\n' +
                 '=====================================================\n\n' +
                 'Plazo de Ejecución: 4-5 meses (vs 18 meses tradicional)\n' +
-                'Garantía: De por vida\n' +
-                'Reutilización: 95% de componentes\n' +
-                'Resistencia marina: 50+ años\n' +
-                'Transporte: Incluido hasta puerto Mahón\n' +
-                'Certificaciones: BREEAM, ambiente marino\n\n' +
+                'Garantía\n' +
+                'Reutilización: 95 de componentes\n' +
+                'Resistencia marina\n' +
+                'Transporte: Incluido \n' +
+                'Certificaciones\n\n' +
                 '=====================================================\n' +
                 'VENTAJAS INSULARES\n' +
                 '=====================================================\n\n' +
-                '• Reducción 60% viajes marítimos\n' +
+                '• Reducción 60 viajes marítimos\n' +
                 '• Optimización logística insular\n' +
-                '• Prefabricación en península\n' +
+                '• Prefabricación en la isla\n' +
                 '• Montaje rápido in situ\n' +
                 '• Mínimo impacto ambiental\n' +
-                '• Valor premium del mercado (+35%)\n\n' +
-                'Contacto: info@cueva.com\n' +
-                'Delegación Baleares: +34 971 123 456\n' +
+                '• Valor premium del mercado (+25)\n\n' +
+                'Contacto: luismgarcia@edrosystems.com\n' +
+                'Delegación Baleares: +34 617808692\n' +
                 'Documento generado: ' + new Date().toLocaleString('es-ES');
             
             var elemento = document.createElement('a');
             elemento.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contenido));
-            elemento.setAttribute('download', 'Presupuesto-CUEVA-Son-Parc-Menorca-' + new Date().toISOString().split('T')[0] + '.txt');
+            elemento.setAttribute('download', 'Presupuesto-OADAC-COT-Partners-' + new Date().toISOString().split('T')[0] + '.txt');
             elemento.style.display = 'none';
             document.body.appendChild(elemento);
             elemento.click();
@@ -2680,50 +3216,50 @@
                 '=====================================================\n' +
                 'COMPARACIÓN SISTEMA CUEVA VS TRADICIONAL\n' +
                 '=====================================================\n\n' +
-                'CUEVA Sistema Universal:\n' +
+                'Sistema EDRO:\n' +
                 '• Plazo: 4-5 meses\n' +
                 '• Costo: ' + formatCurrency(presupuestoData.totalUnidad * presupuestoData.unidades) + '\n' +
                 '• Superficie: ' + formatNumber(presupuestoData.superficiePorVivienda * presupuestoData.unidades) + ' m²\n' +
-                '• Resistencia marina: 50+ años\n' +
-                '• Reutilización: 95%\n\n' +
+                '• Resistencia marina\n' +
+                '• Reutilización: 95\n\n' +
                 'Construcción Tradicional Insular:\n' +
                 '• Plazo: 18-24 meses\n' +
                 '• Costo estimado: ' + formatCurrency(presupuestoData.totalUnidad * presupuestoData.unidades * 1.35) + '\n' +
                 '• Mantenimiento: Alto\n' +
-                '• Reutilización: 5%\n\n' +
+                '• Reutilización: 5\n\n' +
                 '=====================================================\n' +
                 'VENTAJAS ECONÓMICAS CUEVA\n' +
                 '=====================================================\n\n' +
                 'Ahorro inicial: ' + formatCurrency((presupuestoData.totalUnidad * presupuestoData.unidades * 1.35) - (presupuestoData.totalUnidad * presupuestoData.unidades)) + '\n' +
                 'Ahorro tiempo: 13-19 meses\n' +
-                'Valor premium mercado: +35%\n' +
+                'Valor premium mercado: +25\n' +
                 'ROI acelerado: 8-12 meses menos\n\n' +
                 '=====================================================\n' +
                 'VENTAJAS LOGÍSTICAS INSULARES\n' +
                 '=====================================================\n\n' +
-                '• Reducción 60% viajes marítimos\n' +
-                '• Optimización carga contenedores\n' +
+                '• Reducción 60 viajes marítimos\n' +
+                '• Optimización carga\n' +
                 '• Menor dependencia meteorológica\n' +
-                '• Coordinación portuaria simplificada\n' +
+                '• Coordinación simplificada\n' +
                 '• Reducción costos transporte insular\n\n' +
                 '=====================================================\n' +
                 'SOSTENIBILIDAD Y AMBIENTE\n' +
                 '=====================================================\n\n' +
-                '• Mínimo impacto construcción: -85% residuos\n' +
-                '• Eficiencia energética A++\n' +
-                '• Certificaciones BREEAM/LEED\n' +
-                '• Economía circular: 95% reutilizable\n' +
+                '• Mínimo impacto construcción: -85 residuos\n' +
+                '• Eficiencia energética \n' +
+                '• Certificaciones \n' +
+                '• Economía circular: 95 reutilizable\n' +
                 '• Resistencia ambiente salino\n' +
                 '• Integración paisajística\n\n' +
                 'Contacto especialista Baleares:\n' +
-                'Email: baleares@cueva.com\n' +
-                'Teléfono: +34 971 123 456\n' +
-                'Delegación: C/ Marina, 25 - Mahón, Menorca\n\n' +
+                'Email: luismgarcia@edrosystems.com\n' +
+                'Teléfono: +34 617808692\n' +
+                'Delegación:Ctra de Maó a ,Carrer de Cudatella, Km22\n\n' +
                 'Documento generado: ' + new Date().toLocaleString('es-ES');
             
             var elemento = document.createElement('a');
             elemento.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contenido));
-            elemento.setAttribute('download', 'Analisis-Comparativo-CUEVA-Menorca-' + new Date().toISOString().split('T')[0] + '.txt');
+            elemento.setAttribute('download', 'Analisis-Comparativo-OADAC-Menorca-' + new Date().toISOString().split('T')[0] + '.txt');
             elemento.style.display = 'none';
             document.body.appendChild(elemento);
             elemento.click();
@@ -2816,11 +3352,9 @@
             }
         });
 
-        console.log('🏠 CUEVA - Sistema Universal de Construcción');
-        console.log('📋 Presupuesto Son Parc Menorca - 10 Viviendas Unifamiliares');
-        console.log('🌊 Especialización ambiente marino y logística insular');
-        console.log('🗺️ Cliente: Cot & Partners');
-        console.log('📏 Superficie: ' + presupuestoData.superficiePorVivienda + ' m² por vivienda');
+        console.log('Á°Å¸ÂÂ  OADAC - Sistema EDRO de Construcción');
+        console.log('📊 Presupuesto Interactivo COT & Partners');
+        console.log('🏗️ Proyecto Son Parc - Menorca');
     </script>
 </body>
 </html>
