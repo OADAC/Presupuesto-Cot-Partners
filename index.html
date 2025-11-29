@@ -203,6 +203,156 @@
             100 { width: 100; }
         }
 
+        /* Login Screen */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--oadac-navy), var(--gray-800));
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .login-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            display: none;
+        }
+
+        .login-container {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--oadac-navy), var(--oadac-electric));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .login-logo::before {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: var(--white);
+            border-radius: 6px;
+            position: absolute;
+        }
+
+        .login-header h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--oadac-navy);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .login-header p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 0.875rem;
+        }
+
+        .form-group input {
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-family: var(--font-primary);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--oadac-electric);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+        }
+
+        .login-button {
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--oadac-electric), var(--oadac-sky));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 0.5rem;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .login-error {
+            background: #FEE2E2;
+            color: #991B1B;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .login-error.show {
+            display: flex;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-500);
+            font-size: 0.875rem;
+        }
+
         /* Logo Animado Brandbook Header */
         .logo-animated {
             position: relative;
@@ -298,6 +448,95 @@
                 transform: translate(-2px, -3px) scale(0.9); 
                 opacity: 0.7;
             }
+        }
+
+        /* ==================== VIDEO INTRO ==================== */
+        .video-intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 10001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .video-intro-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .video-intro-overlay.hide {
+            opacity: 0;
+        }
+
+        #intro-video {
+            max-width: 100%;
+            max-height: 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .skip-video-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 212, 170, 0.2);
+            color: white;
+            border: 2px solid var(--oadac-electric);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10002;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skip-video-btn:hover {
+            background: rgba(0, 212, 170, 0.4);
+            transform: scale(1.05);
+        }
+
+        .unmute-video-btn {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 107, 74, 0.9);
+            color: white;
+            border: 2px solid var(--oadac-coral);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10002;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        .unmute-video-btn:hover {
+            background: rgba(255, 107, 74, 1);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .header {
@@ -522,6 +761,100 @@
         .cot-stat-label {
             font-size: 0.75rem;
             opacity: 0.9;
+        }
+
+        /* Partners Grid - Juan Mora + Cot & Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .partner-card {
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            padding: 2rem;
+            color: var(--white);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(27, 41, 81, 0.88), 
+                rgba(30, 41, 59, 0.88));
+            z-index: 1;
+        }
+
+        .partner-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .partner-card h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .partner-card .subtitle {
+            font-size: 1rem;
+            color: var(--oadac-electric);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .partner-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+        }
+
+        .partner-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--oadac-electric);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .partner-link:hover {
+            background: var(--white);
+            color: var(--oadac-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .partner-link i {
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 900px) {
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         
@@ -889,10 +1222,10 @@
         /* Instagram-style gallery */
         .instagram-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1rem;
             margin-bottom: 1.5rem;
-            align-items: start;
+            grid-auto-flow: dense;
         }
 
         .gallery-item {
@@ -916,16 +1249,15 @@
         .gallery-item img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
             display: block;
-            background: var(--gray-900);
         }
 
         .gallery-item-large {
+            grid-column: span 2;
             grid-row: span 2;
-            min-height: 450px;
-            max-height: 500px;
+            min-height: 400px;
         }
 
         .gallery-item-large img {
@@ -933,8 +1265,8 @@
         }
 
         .gallery-item-medium {
-            min-height: 300px;
-            max-height: 350px;
+            grid-column: span 1;
+            min-height: 280px;
         }
 
         .gallery-item-medium img {
@@ -942,8 +1274,8 @@
         }
 
         .gallery-item-small {
+            grid-column: span 1;
             min-height: 250px;
-            max-height: 280px;
         }
 
         .gallery-item-small img {
@@ -1374,6 +1706,57 @@
     </style>
 </head>
 <body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo"></div>
+                <h1>OADAC</h1>
+                <p>Presupuesto Proyecto Son Parc - Menorca</p>
+            </div>
+            
+            <form class="login-form" id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="login-error" id="loginError">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Usuario o contraseña incorrectos</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        placeholder="Ingrese su usuario"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Ingrese su contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="login-button">
+                    <i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i>
+                    Acceder al Presupuesto
+                </button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Sistema EDRO - Construcción Industrializada</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Splash Screen / Portada -->
     <div class="splash-screen" id="splashScreen">
         <div class="splash-logo">
@@ -1393,6 +1776,20 @@
                 <div class="splash-progress-bar"></div>
             </div>
         </div>
+    </div>
+
+    <!-- Video Intro Overlay -->
+    <div class="video-intro-overlay" id="videoIntroOverlay">
+        <button class="skip-video-btn" onclick="skipVideo()">
+            <i class="fas fa-times"></i> Saltar
+        </button>
+        <button class="unmute-video-btn" id="unmuteBtn" onclick="enableSound()" style="display: none;">
+            <i class="fas fa-volume-up"></i> Activar Sonido
+        </button>
+        <video id="intro-video" autoplay>
+            <source src="Public/intro.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
     </div>
 
     <header class="header">
@@ -1459,35 +1856,31 @@
     </nav>
 
     <div class="main-container">
-                <!-- TARJETA COT & PARTNERS DESTACADA -->
-        <div class="cot-partners-hero">
-            <div class="cot-partners-content">
-                <div class="cot-partners-info">
+        <!-- TARJETAS PARTNERS - JUAN MORA S.A. + COT & PARTNERS -->
+        <div class="partners-grid">
+            <!-- Tarjeta Juan Mora S.A. -->
+            <div class="partner-card" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80');">
+                <div class="partner-card-content">
+                    <h2>JUAN MORA S.A.</h2>
+                    <div class="subtitle">Constructora Principal del Proyecto</div>
+                    <p>Juan Mora S.A. Empresa constructora con más de 40 años de experiencia en Menorca, especializada en obra pública y privada.</p>
+                    <a href="https://juanmora.com/" target="_blank" class="partner-link">
+                        <i class="fas fa-external-link-alt"></i>
+                        Visitar Web Juan Mora S.A.
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tarjeta Cot & Partners -->
+            <div class="partner-card" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80');">
+                <div class="partner-card-content">
                     <h2>COT & Partners</h2>
                     <div class="subtitle">Promotora del Proyecto Son Parc</div>
-                    <p>Proyecto de 10 viviendas unifamiliares en Son Parc, Menorca, utilizando el Sistema EDRO de construcción industrializada,tecnológica y sostenible. Una propuesta que combina diseño, eficiencia y respeto por el entorno mediterráneo.</p>
-                    <a href="https://www.cotandpartners.com/" target="_blank" class="cot-partners-link">
+                    <p>Promotora inmobiliaria especializada en desarrollos residenciales sostenibles. Posible Cliente, Proyecto de 10 viviendas unifamiliares en Son Parc utilizando el Sistema EDRO.</p>
+                    <a href="https://www.cotandpartners.com/" target="_blank" class="partner-link">
                         <i class="fas fa-external-link-alt"></i>
                         Visitar Web COT & Partners
                     </a>
-                </div>
-                <div class="cot-partners-stats">
-                    <div class="cot-stat">
-                        <span class="cot-stat-number">10</span>
-                        <span class="cot-stat-label">Viviendas</span>
-                    </div>
-                    <div class="cot-stat">
-                        <span class="cot-stat-number">866 m²</span>
-                        <span class="cot-stat-label">Por Unidad</span>
-                    </div>
-                    <div class="cot-stat">
-                        <span class="cot-stat-number">4-5</span>
-                        <span class="cot-stat-label">Meses</span>
-                    </div>
-                    <div class="cot-stat">
-                        <span class="cot-stat-number">Mayor</span>
-                        <span class="cot-stat-label">Eficiencia</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -2005,7 +2398,7 @@
                                 <td class="partida-codigo">04.01</td>
                                 <td>
                                     <div class="partida-desc">SOLADO DE HORMIGÓN REUTILIZABLE, TERMINACIÓN RAYADA + HUECOS DRENAJE</div>
-                                    <div class="partida-comment">Solado prefabricado y reutilizable de 12 cm de canto total, realizado con placas EDRO INFRAESTRUCTURA macizas de hormigón armado de 14 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm). El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero no incluye la capa de hormigón de limpieza ni cimentación.</div>
+                                    <div class="partida-comment">Solado prefabricado y reutilizable de 14 cm de canto total, realizado con placas EDRO INFRAESTRUCTURA macizas de hormigón armado de 14 cm de canto y dimensiones estándar o derivadas de la estándar (750x300cm,600x300cm, 450x300cm, 300x300cm, 300x150cm, 150x150cm). El precio incluye el conformado de elementos en taller industrial con medidas estándar y el montaje en el lugar definitivo de su colocación en obra, pero no incluye la capa de hormigón de limpieza ni cimentación.</div>
                                 </td>
                                 <td class="text-center">
                                     <div class="input-container">
@@ -2025,7 +2418,7 @@
                                 <td class="partida-codigo">07.10</td>
                                 <td>
                                     <div class="partida-desc">VALLADO PERIMETRAL ELEMENTOS PREFABRICADOS 120MM</div>
-                                    <div class="partida-comment">Vallado formado por paneles Valla EDRO prefabricados de hormigón armado de 12 cm, de espesor, de ancho estándar (3m o 1,5m) o personalizado de dimensiones derivadas de las estándar, con altura libre de planta de hasta Xm, unidos entre sí mediante placas de unión metálicas ocultas atornilladas, empotre o vaina de conexión.</div>
+                                    <div class="partida-comment">Vallado formado por paneles Valla EDRO prefabricados de hormigón armado de 12, de espesor, de ancho estándar (3m o 1,5m) o personalizado de dimensiones derivadas de las estándar, con altura libre de planta de hasta Xm, unidos entre sí mediante placas de unión metálicas ocultas atornilladas, empotre o vaina de conexión.</div>
                                 </td>
                                 <td class="text-center">
                                     <div class="input-container">
@@ -2197,7 +2590,7 @@
                         <div class="summary-text">
                             <h4>Precisión </h4>
                             <p class="amount text-purple">Universal</p>
-                            <p class="subtitle">Proporciones geométricas estándar</p>
+                            <p class="subtitle">Proporciones geométricas</p>
                         </div>
                         <div class="summary-icon" style="background: rgba(139, 69, 19, 0.1); color: #8B4513;">
                             <i class="fas fa-calculator"></i>
@@ -2263,47 +2656,95 @@
             <!-- Galería Visual CUEVA tipo Instagram -->
             <div class="chapter-card" style="margin-bottom: 1.5rem;">
                 <div class="chapter-header">
-                    <h3 class="chapter-title">Sistema EDRO</h3>
+                    <h3 class="chapter-title">Sistema EDRO en Acción</h3>
                 </div>
                 <div style="padding: 1.5rem;">
                     <div class="instagram-gallery">
                         <div class="gallery-item gallery-item-large">
-                            <img src="Public/Fotos/Generales/Imagen3.jpg" alt="Sistema EDRO - Estructura Finalizada">
+                            <img src="Public/Fotos/Generales/IMG_6956.jpg" alt="Sistema EDRO - Montaje en Obra">
                             <div class="gallery-overlay">
-                                <h4>Estructura Finalizada</h4>
+                                <h4>Montaje en Obra</h4>
+                                <p>Sistema modular en ejecución</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/IMG_7388.jpg" alt="Sistema EDRO - Elementos Prefabricados">
+                            <div class="gallery-overlay">
+                                <h4>Elementos Prefabricados</h4>
+                                <p>Precisión industrial</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/IMG_7434.jpg" alt="Sistema EDRO - Estructura">
+                            <div class="gallery-overlay">
+                                <h4>Estructura EDRO</h4>
                                 <p>Calidad constructiva</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Generales/Imagen4.jpg" alt="Sistema EDRO - Eficiencia Constructiva">
+                            <img src="Public/Fotos/Generales/IMG_7448.jpg" alt="Sistema EDRO - Detalles">
                             <div class="gallery-overlay">
-                                <h4>Eficiencia Constructiva</h4>
-                                <p>4-5 meses vs 18 tradicional</p>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Generales/Imagen5.jpg" alt="Sistema EDRO - Precisión Modular">
-                            <div class="gallery-overlay">
-                                <h4>Precisión Modular</h4>
-                                <p>Calidad industrial</p>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Generales/Imagen6.jpg" alt="Sistema EDRO - Sostenibilidad Total">
-                            <div class="gallery-overlay">
-                                <h4>Sostenibilidad Real</h4>
-                                <p>95 componentes reutilizables</p>
+                                <h4>Detalles Constructivos</h4>
+                                <p>Precisión milimétrica</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Generales/Imagen7.jpg" alt="Sistema EDRO - Resultados Finales">
+                            <img src="Public/Fotos/Generales/Imagen1.jpg" alt="Sistema EDRO - Proyecto Completo">
+                            <div class="gallery-overlay">
+                                <h4>Proyecto Completo</h4>
+                                <p>Visión integral</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen2.jpg" alt="Sistema EDRO - Eficiencia">
+                            <div class="gallery-overlay">
+                                <h4>Eficiencia</h4>
+                                <p>4-5 meses entrega</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen3.jpg" alt="Sistema EDRO - Sostenibilidad">
+                            <div class="gallery-overlay">
+                                <h4>Sostenibilidad</h4>
+                                <p>95% reutilizable</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen4.jpg" alt="Sistema EDRO - Calidad">
+                            <div class="gallery-overlay">
+                                <h4>Calidad Premium</h4>
+                                <p>Excelencia garantizada</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen5.jpg" alt="Sistema EDRO - Innovación">
+                            <div class="gallery-overlay">
+                                <h4>Innovación</h4>
+                                <p>Tecnología constructiva</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen6.jpg" alt="Sistema EDRO - Resistencia">
+                            <div class="gallery-overlay">
+                                <h4>Resistencia Marina</h4>
+                                <p>Ambiente salino</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Generales/Imagen7.jpg" alt="Sistema EDRO - Resultados">
                             <div class="gallery-overlay">
                                 <h4>Resultados Finales</h4>
-                                <p>Excelencia constructiva</p>
+                                <p>Obra terminada</p>
                             </div>
                         </div>
                     </div>
@@ -2476,50 +2917,82 @@
                 <div style="padding: 1.5rem;">
                     <div class="instagram-gallery">
                         <div class="gallery-item gallery-item-large">
-                            <img src="Public/Fotos/Colaboración/DEOF6384.JPG" alt="Equipo CUEVA en reunión estratégica">
+                            <img src="Public/Fotos/Colaboración/DEOF6384.JPG" alt="Equipo OADAC en reunión estratégica">
                             <div class="gallery-overlay">
-                                <h4>Estratégia</h4>
+                                <h4>Estrategia</h4>
                                 <p>Planificación colaborativa</p>
                             </div>
                         </div>
                         
-                        <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Colaboración/IMG_4312.PNG" alt="Planificación del proyecto Son Parc">
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_6950.jpg" alt="Montaje Sistema EDRO">
                             <div class="gallery-overlay">
-                                <h4>Planificación Proyecto</h4>
+                                <h4>Montaje EDRO</h4>
+                                <p>Sistema en ejecución</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_6962.jpg" alt="Coordinación en obra">
+                            <div class="gallery-overlay">
+                                <h4>Coordinación Obra</h4>
+                                <p>Trabajo en equipo</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Colaboración/IMG_7352.jpg" alt="Análisis técnico">
+                            <div class="gallery-overlay">
+                                <h4>Análisis Técnico</h4>
+                                <p>Detalles constructivos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-medium">
+                            <img src="Public/Fotos/Colaboración/IMG_7409.jpg" alt="Elementos prefabricados">
+                            <div class="gallery-overlay">
+                                <h4>Prefabricados EDRO</h4>
+                                <p>Componentes modulares</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_7424.jpg" alt="Equipo colaborativo en acción">
+                            <div class="gallery-overlay">
+                                <h4>Equipo en Acción</h4>
+                                <p>Sinergia colaborativa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="gallery-item gallery-item-small">
+                            <img src="Public/Fotos/Colaboración/IMG_4312.png" alt="Planificación del proyecto">
+                            <div class="gallery-overlay">
+                                <h4>Planificación</h4>
                                 <p>Diseño colaborativo</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Colaboración/IMG_4314.PNG" alt="Revisión técnica de componentes">
+                            <img src="Public/Fotos/Colaboración/IMG_4315.jpg" alt="Especificaciones técnicas">
                             <div class="gallery-overlay">
-                                <h4>Revisión Técnica</h4>
-                                <p>Análisis componentes</p>
+                                <h4>Especificaciones</h4>
+                                <p>Documentación técnica</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Colaboración/IMG_4315.PNG" alt=ÓAnálisis de especificaciones">
+                            <img src="Public/Fotos/Colaboración/IMG_4318.jpg" alt="Logística insular">
                             <div class="gallery-overlay">
-                                <h4>Análisis Especificaciones</h4>
-                                <p>Detalles técnicos</p>
-                            </div>
-                        </div>
-                        
-                        <div class="gallery-item gallery-item-medium">
-                            <img src="Public/Fotos/Colaboración/IMG_4318.PNG" alt="Coordinación logística insular">
-                            <div class="gallery-overlay">
-                                <h4>Logística Insular</h4>
-                                <p>Coordinación Menorca</p>
+                                <h4>Logística Menorca</h4>
+                                <p>Coordinación insular</p>
                             </div>
                         </div>
                         
                         <div class="gallery-item gallery-item-small">
-                            <img src="Public/Fotos/Colaboración/IMG_4319.PNG" alt="Equipo colaborativo en acción">
+                            <img src="Public/Fotos/Colaboración/IMG_4319.PNG" alt="Trabajo en equipo">
                             <div class="gallery-overlay">
-                                <h4>Equipo en Acción</h4>
-                                <p>Sinergia colaborativa</p>
+                                <h4>Trabajo en Equipo</h4>
+                                <p>Colaboración efectiva</p>
                             </div>
                         </div>
                     </div>
@@ -2708,7 +3181,7 @@
                         <ul class="condition-list">
                             <li><span class="condition-number">I.</span> La vigencia de esta oferta se limita a un mes.</li>
                             <li><span class="condition-number">II.</span> En esta oferta no está incluido el IVA, que se facturará al tipo vigente en cada momento.</li>
-                            <li><span class="condition-number">III.</span> Los precios no contemplan y por tanto serán objeto de revisión global, las subidas extraordinarias de las materias primas, auxiliares, transportes o grúas, entendiendo por subidas extraordinarias aquellas que afectando de manera generalizada al sector superen el 10% en un plazo no superior a 12 meses.</li>
+                            <li><span class="condition-number">III.</span> Los precios no contemplan y por tanto serán objeto de revisión global, las subidas extraordinarias de las materias primas, auxiliares, transportes o grúas, entendiendo por subidas extraordinarias aquellas que afectando de manera generalizada al sector superen el 10 en un plazo no superior a 12 meses.</li>
                             <li><span class="condition-number">IV.</span> Durante el tiempo que dure la obra el cliente ha de disponer en obra suministro de electricidad y agua.</li>
                             <li><span class="condition-number">V.</span> El presupuesto facilitado es orientativo hasta confirmación definitiva de medidas y tipología. Las modificaciones posteriores a la fecha de la presente oferta serán objeto de revisión y nueva valoración.</li>
                             <li><span class="condition-number">VI.</span> Los portes están incluidos en el precio.</li>
@@ -2726,7 +3199,7 @@
                         <ul class="condition-list">
                             <li><span class="condition-number">I.</span> En el montaje y colocación de forjados no está incluida la realización o ejecución in situ de huecos o pasantes, ni relleno de cobijas o similar.</li>
                             <li><span class="condition-number">II.</span> La apertura de huecos o pasantes se facturará por hora de administración.</li>
-                            <li><span class="condition-number">III.</span> Los cortes longitudinales se facturarán a partir de 15€/m.</li>
+                            <li><span class="condition-number">III.</span> Los cortes longitudinales se facturarán a 45€/m.</li>
                             <li><span class="condition-number">IV.</span> El suministro está considerado sobre camión tráiler, el tiempo máximo de descarga por camión contemplado en el presupuesto es de 2 horas, a partir de ese tiempo se facturará a 85€/h de espera.</li>
                             <li><span class="condition-number">V.</span> Toda la estructura metálica aportada en obra será miniada en fábrica.</li>
                         </ul>
@@ -2739,7 +3212,7 @@
                             <li><span class="condition-number">II.</span> Los paneles se fabrican con materias primas naturales por lo que no se garantiza la uniformidad del tono de color.</li>
                             <li><span class="condition-number">III.</span> Los precios establecidos se aplicarán sobre mediciones reales de obra, las que aparecen en este documento son teóricas.</li>
                             <li><span class="condition-number">IV.</span> Para la colocación de los paneles, la estructura existente no debe disponer de vuelos ni salientes en niveles superiores al nivel de montaje.</li>
-                            <li><span class="condition-number">V.</span>  No está incluido el retacado con mortero en las zonas inferiores de panel prefabricado.</li>
+                            <li><span class="condition-number">V.</span> No está incluido el retacado con mortero en las zonas inferiores de panel prefabricado.</li>
                         </ul>
                     </div>
                 </div>
@@ -2748,10 +3221,10 @@
                     <div class="condition-group">
                         <h4>Condiciones de Pago</h4>
                         <ul class="condition-list">
-                            <li><span class="condition-number">I.</span> 30% a la firma del presente presupuesto, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">II.</span> 30% al comienzo de la fabricación, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">III.</span> 25% a la recepción en obra de los paneles, por transferencia bancaria a 7 días fecha factura.</li>
-                            <li><span class="condition-number">IV.</span> 15% al finalizar el montaje, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">I.</span> 30 a la firma del presente presupuesto, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">II.</span> 30 al comienzo de la fabricación, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">III.</span> 25 al envío a obra, por transferencia bancaria a 7 días fecha factura.</li>
+                            <li><span class="condition-number">IV.</span> 15 al finalizar el montaje, por transferencia bancaria a 7 días fecha factura.</li>
                         </ul>
                     </div>
                 </div>
@@ -2760,10 +3233,10 @@
                     <div class="condition-group">
                         <h4>Condiciones Específicas Insulares</h4>
                         <ul class="condition-list">
-                            <li><span class="condition-number">1.</span> El transporte terrestre está incluído desde fábrica a obra.</li>
-                            <li><span class="condition-number">2.</span> Los horarios de descarga se coordinarán con los responsables en cada caso de proyecto.</li>
-                            <li><span class="condition-number">4.</span> Se requiere coordinación previa con las autoridades insulares para permisos de transporte y grúas(incluído).</li>
-                            <li><span class="condition-number">5.</span> Los plazos de entrega pueden verse afectados por condiciones meteorológicas.</li>
+                            <li><span class="condition-number">1.</span> El transporte terrestre está incluido a obra.</li>
+                            <li><span class="condition-number">2.</span> Los horarios de descarga en puerto se coordinarán con las autoridades portuarias de Menorca en caso de producirse.</li>
+                            <li><span class="condition-number">3.</span> Los plazos de entrega pueden verse afectados por condiciones meteorológicas.</li>
+                            <li><span class="condition-number">4.</span> Se requiere coordinación previa con las autoridades insulares para permisos de montaje y grúas.</li>
                         </ul>
                     </div>
 
@@ -2771,8 +3244,10 @@
                         <h4>Se Incluye Específicamente</h4>
                         <ul class="condition-list">
                             <li><span class="condition-number">I.</span> Sellado de juntas exteriores.</li>
-                            <li><span class="condition-number">II.</span> Sistemas de anclajes o uniones metálicas con galvanizado cuando proceda.</li>
-                            <li><span class="condition-number">III.</span> Medios auxiliares para la descarga y ejecución de la obra.</li>
+                            <li><span class="condition-number">II.</span> Sistemas de anclajes o uniones metálicas miniadas en fábrica, posibilidad de galvanizado(No incluído en presupuesto).</li>
+                            <li><span class="condition-number">III.</span> Transporte terrestre.</li>
+                            <li><span class="condition-number">IV.</span> Medios auxiliares para la descarga portuaria y ejecución de la obra.</li>
+                            <li><span class="condition-number">V.</span> Certificaciones específicas de componentes y proceso.</li>
                         </ul>
                     </div>
                 </div>
@@ -2830,7 +3305,7 @@
                                     <p class="meta"> Especificaciones completas</p>
                                 </div>
                             </div>
-                            <button class="btn-download" onclick="window.open('Public/pdf/CATALOGO TECNICO EDRO V10.pdf', '_blank')">Descargar</button>
+                            <button class="btn-download" onclick="window.open('Public/pdf/CATALOGO TECNICO EDRO.pdf', '_blank')">Descargar</button>
                         </div>
 
                         <div class="download-item">
@@ -2875,10 +3350,11 @@
 
         <!-- SECCIÓN CONTACTO -->
         <div id="contacto-section" class="content-section">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                <!-- TARJETA OADAC -->
                 <div class="chapter-card">
                     <div class="chapter-header">
-                        <h3 class="chapter-title">Información de Contacto</h3>
+                        <h3 class="chapter-title">OADAC - Sistema EDRO</h3>
                     </div>
                     <div style="padding: 1.5rem;">
                         <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
@@ -2887,8 +3363,7 @@
                             </div>
                             <div>
                                 <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Email Corporativo</h4>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">luismgarcia@edrosystems.com</p>
-                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">luismgarcia@edrosystems.com</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9c5dcc0dac4cec8dbcac0c8e9cccddbc6dad0daddccc4da87cac6c4">luismgarcia@edrosystems.com</a></p>
                                 <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Respuesta en menos de 24h</p>
                             </div>
                         </div>
@@ -2918,22 +3393,67 @@
                     </div>
                 </div>
 
+                <!-- TARJETA JUAN MORA -->
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <h3 class="chapter-title">Juan Mora</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-electric); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Email Corporativo</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6e6b624f657a6e6162607d6e216c6062">adm@juanmora.com</a></p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Respuesta en menos de 24h</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-sky); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Teléfono Directo</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">971 363 270 / +34 639 444 595</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Lun-Vie: 9:00-19:00h</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                            <div style="width: 48px; height: 48px; background: var(--oadac-coral); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: var(--white); flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-weight: 600; color: var(--gray-800); margin-bottom: 0.25rem;">Oficinas Menorca</h4>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">C/ Portugal 16</p>
+                                <p style="color: var(--gray-600); margin: 0; font-size: 0.875rem;">07714 Mahón, Islas Baleares</p>
+                                <p style="color: var(--gray-500); margin: 0; font-size: 0.75rem;">Desarrollo inmobiliario</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULARIO DE CONTACTO -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
                 <div class="chapter-card">
                     <div class="chapter-header">
                         <h3 class="chapter-title">Solicitar Información</h3>
                     </div>
                     <div style="padding: 1.5rem;">
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                            <input type="text" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder=ÓNombre completo" id="contact-name">
-                            <input type="email" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Email corporativo" id="contact-email">
+                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Nombre completo" id="contact-name">
+                            <input type="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Email corporativo" id="contact-email">
                         </div>
                         
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-                            <input type="tel" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Teléfono de contacto" id="contact-phone">
-                            <input type="text" style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Empresa / Estudio" id="contact-company">
+                            <input type="tel" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Teléfono de contacto" id="contact-phone">
+                            <input type="text" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem;" placeholder="Empresa / Estudio" id="contact-company">
                         </div>
                         
-                        <select style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem;" id="contact-type">
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; margin-bottom: 1rem;" id="contact-type">
                             <option value="">Tipo de consulta</option>
                             <option value="presupuesto">Solicitar presupuesto personalizado</option>
                             <option value="visita">Agendar visita técnica Menorca</option>
@@ -2942,9 +3462,9 @@
                             <option value="financiacion">Opciones de financiación</option>
                         </select>
 
-                        <textarea style="width: 100; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; resize: vertical; min-height: 100px; margin-bottom: 1rem;" placeholder="Describe tu proyecto: timeline específico, requisitos ambientales, logística..." rows="4" id="contact-message"></textarea>
+                        <textarea style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.875rem; resize: vertical; min-height: 100px; margin-bottom: 1rem;" placeholder="Describe tu proyecto: timeline específico, requisitos ambientales, logística..." rows="4" id="contact-message"></textarea>
 
-                        <button style="width: 100; padding: 0.75rem 1.5rem; background: var(--oadac-electric); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" onclick="enviarFormulario()">
+                        <button style="width: 100%; padding: 0.75rem 1.5rem; background: var(--oadac-electric); color: var(--white); border: none; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;" onclick="enviarFormulario()">
                             <span>Solicitar Información</span>
                             <i class="fas fa-arrow-right"></i>
                         </button>
@@ -2954,7 +3474,52 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Login credentials
+        var VALID_USERNAME = "Juan Mora";
+        var VALID_PASSWORD = "Cots&Partners";
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorDiv = document.getElementById('loginError');
+            
+            if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+                console.log('✅ Login exitoso');
+                // Login exitoso
+                errorDiv.classList.remove('show');
+                document.getElementById('loginScreen').classList.add('hidden');
+                
+                // Mostrar splash screen después del login
+                setTimeout(function() {
+                    console.log('🎨 Mostrando splash screen...');
+                    document.getElementById('splashScreen').classList.remove('hidden');
+                    
+                    // Programar cierre del splash y mostrar video
+                    setTimeout(function() {
+                        console.log('👋 Ocultando splash screen...');
+                        document.getElementById('splashScreen').classList.add('hidden');
+                        
+                        // Mostrar video después del splash
+                        setTimeout(function() {
+                            showVideoIntro();
+                        }, 500);
+                    }, 3000);
+                }, 100);
+                
+                return false;
+            } else {
+                // Login fallido
+                errorDiv.classList.add('show');
+                document.getElementById('password').value = '';
+                document.getElementById('password').focus();
+                
+                return false;
+            }
+        }
+
         var presupuestoData = {
             unidades: 10,
             estructura: [
@@ -2973,10 +3538,13 @@
 
         // Splash screen logic
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.getElementById('splashScreen').classList.add('hidden');
-            }, 3000);
+            // Ocultar splash screen inicialmente
+            document.getElementById('splashScreen').classList.add('hidden');
             
+            // Mostrar login screen
+            document.getElementById('loginScreen').classList.remove('hidden');
+            
+            // Inicializar la app
             var today = new Date().toLocaleDateString('es-ES');
             document.getElementById('currentDate').textContent = today;
             document.getElementById('current-date-menorca').textContent = today;
@@ -2986,6 +3554,73 @@
             setupConditionsNavigation();
             actualizarTotales();
         });
+
+        // ==================== FUNCIONES VIDEO INTRO ====================
+        function skipVideo() {
+            console.log('⏭️ Saltando video...');
+            hideVideoIntroAndShowHero();
+        }
+
+        function showVideoIntro() {
+            console.log('🎬 Iniciando video intro...');
+            var videoOverlay = document.getElementById('videoIntroOverlay');
+            var video = document.getElementById('intro-video');
+            var unmuteBtn = document.getElementById('unmuteBtn');
+            
+            videoOverlay.classList.add('show');
+            
+            // Intentar reproducir con sonido
+            video.muted = false;
+            var playPromise = video.play();
+            
+            // Si el navegador bloquea autoplay con sonido, mostrar botón
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    // Video se reproduce con sonido correctamente
+                    console.log('✅ Video reproduciendo con sonido');
+                }).catch(function(error) {
+                    console.log('⚠️ Autoplay con sonido bloqueado, reproduciendo sin sonido...');
+                    video.muted = true;
+                    video.play();
+                    // Mostrar botón para activar sonido
+                    unmuteBtn.style.display = 'flex';
+                });
+            }
+
+            // Cuando el video termina, ocultarlo
+            video.addEventListener('ended', function() {
+                console.log('✅ Video terminado');
+                hideVideoIntroAndShowHero();
+            }, { once: true });
+
+            // También permitir hacer clic en el video para saltarlo
+            video.addEventListener('click', function() {
+                console.log('⏭️ Video saltado por click');
+                hideVideoIntroAndShowHero();
+            }, { once: true });
+        }
+
+        function enableSound() {
+            var video = document.getElementById('intro-video');
+            var unmuteBtn = document.getElementById('unmuteBtn');
+            video.muted = false;
+            unmuteBtn.style.display = 'none';
+        }
+
+        function hideVideoIntroAndShowHero() {
+            console.log('🎬 Ocultando video intro...');
+            var videoOverlay = document.getElementById('videoIntroOverlay');
+            var video = document.getElementById('intro-video');
+            
+            videoOverlay.classList.remove('show');
+            videoOverlay.classList.add('hide');
+            
+            setTimeout(function() {
+                videoOverlay.style.display = 'none';
+                video.pause();
+                console.log('✅ Video oculto completamente');
+            }, 500);
+        }
 
         function setupNavigation() {
             var navItems = document.querySelectorAll('.nav-item');
@@ -3321,7 +3956,7 @@
             }
         });
 
-        console.log('Á°Å¸ÂÂ  OADAC - Sistema EDRO de Construcción');
+        console.log('🏗️  OADAC - Sistema EDRO de Construcción');
         console.log('📊 Presupuesto Interactivo COT & Partners');
         console.log('🏗️ Proyecto Son Parc - Menorca');
     </script>
